@@ -7,7 +7,7 @@
 <title>New York · 11–21 June</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root {
@@ -36,11 +36,9 @@
     --pink-soft: #fcd2e1;
     --purple: #6b46c1;
     --purple-soft: #ddd1f0;
-    --display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  }
-    --display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --display-alt: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,14 +86,29 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 200px;
+    height: 280px;
     z-index: 0;
     pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='xMinYMax slice'><defs><linearGradient id='b' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%231a1d2e' stop-opacity='0.13'/><stop offset='100%25' stop-color='%231a1d2e' stop-opacity='0.26'/></linearGradient></defs><g fill='url(%23b)'><rect x='0' y='150' width='30' height='50'/><rect x='32' y='140' width='24' height='60'/><rect x='58' y='155' width='20' height='45'/><rect x='80' y='160' width='40' height='40'/><rect x='95' y='130' width='10' height='30'/><polygon points='100,128 95,118 105,118'/><circle cx='100' cy='113' r='3'/><polygon points='97,108 100,103 103,108'/><rect x='122' y='160' width='18' height='40'/><rect x='142' y='150' width='14' height='50'/><polygon points='160,90 175,75 175,200 160,200'/><polygon points='175,75 190,90 190,200 175,200'/><rect x='192' y='95' width='4' height='105'/><rect x='198' y='105' width='14' height='95'/><rect x='214' y='115' width='10' height='85'/><rect x='226' y='160' width='8' height='40'/><polygon points='234,160 240,150 246,160'/><rect x='234' y='160' width='12' height='40'/><polygon points='246,160 252,148 258,160'/><rect x='246' y='160' width='12' height='40'/><polygon points='258,160 264,150 270,160'/><rect x='258' y='160' width='12' height='40'/><line x1='234' y1='150' x2='270' y2='150' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.8'/><line x1='240' y1='150' x2='240' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><line x1='252' y1='148' x2='252' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><line x1='264' y1='150' x2='264' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><rect x='275' y='150' width='22' height='50'/><rect x='299' y='140' width='28' height='60'/><rect x='329' y='155' width='20' height='45'/><rect x='351' y='145' width='14' height='55'/><polygon points='370,200 370,135 408,160 408,200'/><rect x='405' y='130' width='8' height='10'/><rect x='415' y='150' width='20' height='50'/><rect x='435' y='135' width='16' height='65'/><rect x='455' y='80' width='38' height='120'/><rect x='463' y='65' width='22' height='15'/><rect x='470' y='45' width='8' height='20'/><line x1='474' y1='45' x2='474' y2='28' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='1.5'/><rect x='495' y='160' width='14' height='40'/><rect x='511' y='110' width='20' height='90'/><polygon points='511,110 521,95 531,110'/><circle cx='517' cy='105' r='2.5' fill='none' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='1'/><line x1='517' y1='103' x2='517' y2='106' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='0.6'/><line x1='515' y1='105' x2='519' y2='105' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='0.6'/><rect x='533' y='150' width='12' height='50'/><rect x='547' y='130' width='10' height='70'/><rect x='560' y='95' width='28' height='105'/><polygon points='560,95 574,80 588,95'/><polygon points='564,80 574,68 584,80'/><polygon points='568,68 574,58 580,68'/><line x1='574' y1='58' x2='574' y2='42' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='1.5'/><rect x='590' y='140' width='14' height='60'/><rect x='606' y='115' width='18' height='85'/><rect x='624' y='100' width='30' height='100'/><rect x='656' y='125' width='14' height='75'/><rect x='672' y='110' width='16' height='90'/><rect x='690' y='95' width='8' height='105'/><rect x='700' y='75' width='14' height='125'/><rect x='716' y='105' width='12' height='95'/><rect x='730' y='155' width='10' height='45'/><rect x='742' y='160' width='8' height='40'/><polygon points='752,170 758,160 764,170 770,160 776,170 782,160 788,170 794,160 800,170 800,200 752,200'/></g><path d='M0,30 Q200,5 400,30 T800,30' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='1' fill='none'/><g><polygon points='25,26.5 35,26.5 30,48.5' fill='%23d6364a'/><polygon points='75,22 85,22 80,44' fill='%230f4c8a'/><polygon points='125,19 135,19 130,41' fill='%23f9b234'/><polygon points='175,17.6 185,17.6 180,39.6' fill='%23ffffff' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='0.5'/><polygon points='225,17.8 235,17.8 230,39.8' fill='%2300a155'/><polygon points='275,19.5 285,19.5 280,41.5' fill='%23d6364a'/><polygon points='325,22.8 335,22.8 330,44.8' fill='%230f4c8a'/><polygon points='375,27.6 385,27.6 380,49.6' fill='%23f9b234'/><polygon points='425,33.5 435,33.5 430,55.5' fill='%2300a155'/><polygon points='475,38 485,38 480,60' fill='%23d6364a'/><polygon points='525,41 535,41 530,63' fill='%23ffffff' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='0.5'/><polygon points='575,42.4 585,42.4 580,64.4' fill='%230f4c8a'/><polygon points='625,42.2 635,42.2 630,64.2' fill='%23f9b234'/><polygon points='675,40.5 685,40.5 680,62.5' fill='%2300a155'/><polygon points='725,37.2 735,37.2 730,59.2' fill='%23d6364a'/><polygon points='775,32.4 785,32.4 780,54.4' fill='%230f4c8a'/></g></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='xMinYMax slice'><defs><linearGradient id='b' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%231a1d2e' stop-opacity='0.13'/><stop offset='100%25' stop-color='%231a1d2e' stop-opacity='0.26'/></linearGradient></defs><g fill='url(%23b)'><rect x='0' y='150' width='30' height='50'/><rect x='32' y='140' width='24' height='60'/><rect x='58' y='155' width='20' height='45'/><rect x='80' y='160' width='40' height='40'/><rect x='95' y='130' width='10' height='30'/><polygon points='100,128 95,118 105,118'/><circle cx='100' cy='113' r='3'/><polygon points='97,108 100,103 103,108'/><rect x='122' y='160' width='18' height='40'/><rect x='142' y='150' width='14' height='50'/><polygon points='160,90 175,75 175,200 160,200'/><polygon points='175,75 190,90 190,200 175,200'/><rect x='192' y='95' width='4' height='105'/><rect x='198' y='105' width='14' height='95'/><rect x='214' y='115' width='10' height='85'/><rect x='226' y='160' width='8' height='40'/><polygon points='234,160 240,150 246,160'/><rect x='234' y='160' width='12' height='40'/><polygon points='246,160 252,148 258,160'/><rect x='246' y='160' width='12' height='40'/><polygon points='258,160 264,150 270,160'/><rect x='258' y='160' width='12' height='40'/><line x1='234' y1='150' x2='270' y2='150' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.8'/><line x1='240' y1='150' x2='240' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><line x1='252' y1='148' x2='252' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><line x1='264' y1='150' x2='264' y2='180' stroke='%231a1d2e' stroke-opacity='0.25' stroke-width='0.6'/><rect x='275' y='150' width='22' height='50'/><rect x='299' y='140' width='28' height='60'/><rect x='329' y='155' width='20' height='45'/><rect x='351' y='145' width='14' height='55'/><polygon points='370,200 370,135 408,160 408,200'/><rect x='405' y='130' width='8' height='10'/><rect x='415' y='150' width='20' height='50'/><rect x='435' y='135' width='16' height='65'/><rect x='455' y='80' width='38' height='120'/><rect x='463' y='65' width='22' height='15'/><rect x='470' y='45' width='8' height='20'/><line x1='474' y1='45' x2='474' y2='28' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='1.5'/><rect x='495' y='160' width='14' height='40'/><rect x='511' y='110' width='20' height='90'/><polygon points='511,110 521,95 531,110'/><circle cx='517' cy='105' r='2.5' fill='none' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='1'/><line x1='517' y1='103' x2='517' y2='106' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='0.6'/><line x1='515' y1='105' x2='519' y2='105' stroke='%231a1d2e' stroke-opacity='0.35' stroke-width='0.6'/><rect x='533' y='150' width='12' height='50'/><rect x='547' y='130' width='10' height='70'/><rect x='560' y='95' width='28' height='105'/><polygon points='560,95 574,80 588,95'/><polygon points='564,80 574,68 584,80'/><polygon points='568,68 574,58 580,68'/><line x1='574' y1='58' x2='574' y2='42' stroke='%231a1d2e' stroke-opacity='0.3' stroke-width='1.5'/><rect x='590' y='140' width='14' height='60'/><rect x='606' y='115' width='18' height='85'/><rect x='624' y='100' width='30' height='100'/><rect x='656' y='125' width='14' height='75'/><rect x='672' y='110' width='16' height='90'/><rect x='690' y='95' width='8' height='105'/><rect x='700' y='75' width='14' height='125'/><rect x='716' y='105' width='12' height='95'/><rect x='730' y='155' width='10' height='45'/><rect x='742' y='160' width='8' height='40'/><polygon points='752,170 758,160 764,170 770,160 776,170 782,160 788,170 794,160 800,170 800,200 752,200'/></g></svg>");
     background-repeat: repeat-x;
-    background-size: 800px 200px;
+    background-size: 1100px 280px;
     background-position: bottom left;
-    opacity: 0.75;
+    opacity: 1;
+  }
+
+  /* Flag bunting - separate decorative banner just above the skyline */
+  .bunting {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 240px;
+    height: 55px;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 55' preserveAspectRatio='none'><path d='M0,12 Q200,2 400,12 T800,12' stroke='%231a1d2e' stroke-opacity='0.4' stroke-width='1.2' fill='none'/><g><polygon points='20,11 32,11 26,40' fill='%23d6364a'/><polygon points='60,8 72,8 66,37' fill='%230f4c8a'/><polygon points='100,7 112,7 106,36' fill='%23f9b234'/><polygon points='140,6 152,6 146,35' fill='%23ffffff' stroke='%231a1d2e' stroke-opacity='0.4' stroke-width='0.5'/><polygon points='180,6 192,6 186,35' fill='%2300a155'/><polygon points='220,7 232,7 226,36' fill='%23d6364a'/><polygon points='260,9 272,9 266,38' fill='%230f4c8a'/><polygon points='300,11 312,11 306,40' fill='%23f9b234'/><polygon points='340,13 352,13 346,42' fill='%2300a155'/><polygon points='380,14 392,14 386,43' fill='%23d6364a'/><polygon points='420,14 432,14 426,43' fill='%23ffffff' stroke='%231a1d2e' stroke-opacity='0.4' stroke-width='0.5'/><polygon points='460,13 472,13 466,42' fill='%230f4c8a'/><polygon points='500,12 512,12 506,41' fill='%23f9b234'/><polygon points='540,10 552,10 546,39' fill='%2300a155'/><polygon points='580,8 592,8 586,37' fill='%23d6364a'/><polygon points='620,7 632,7 626,36' fill='%230f4c8a'/><polygon points='660,6 672,6 666,35' fill='%23f9b234'/><polygon points='700,6 712,6 706,35' fill='%2300a155'/><polygon points='740,7 752,7 746,36' fill='%23d6364a'/><polygon points='780,8 792,8 786,37' fill='%230f4c8a'/></g></svg>");
+    background-repeat: repeat-x;
+    background-size: 800px 55px;
+    background-position: top left;
   }
 
   /* Confetti falling continuously */
@@ -142,6 +155,72 @@
   .hero {
     padding: 60px 0 24px;
     position: relative;
+    text-align: center;
+    overflow: visible;
+  }
+
+  /* Letters - inline-block needed for transform */
+  .hero h1 .letter {
+    display: inline-block;
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: bottom center;
+  }
+  .hero h1 .letter.kicking {
+    animation: kick-letter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .hero h1 .letter.kicking-end {
+    animation: kick-letter-end 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .hero h1 .letter.bumping {
+    animation: bump-letter 0.4s ease-out;
+  }
+  @keyframes kick-letter {
+    0% { transform: translateY(0) rotate(0); }
+    35% { transform: translateY(-18px) rotate(-22deg); }
+    70% { transform: translateY(-6px) rotate(8deg); }
+    100% { transform: translateY(0) rotate(0); }
+  }
+  @keyframes kick-letter-end {
+    0% { transform: translateY(0) rotate(0); }
+    35% { transform: translateY(-18px) rotate(22deg); }
+    70% { transform: translateY(-6px) rotate(-8deg); }
+    100% { transform: translateY(0) rotate(0); }
+  }
+  @keyframes bump-letter {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Soccer ball */
+  .soccer-ball {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: opacity 0.2s;
+  }
+  .soccer-ball svg {
+    width: 100%;
+    height: 100%;
+    animation: ball-spin 0.6s linear infinite;
+  }
+  @keyframes ball-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 640px) {
+    .soccer-ball { width: 28px; height: 28px; }
   }
 
   .hero-tag {
@@ -162,56 +241,75 @@
   .countdown {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 20px;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px 28px;
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
     color: white;
-    border-radius: 18px;
-    margin-bottom: 36px;
-    box-shadow: 0 6px 20px rgba(0, 161, 85, 0.25);
+    border-radius: 22px;
+    margin: 0 auto 40px;
+    box-shadow: 0 10px 30px rgba(0, 161, 85, 0.3);
     flex-wrap: wrap;
     width: fit-content;
     max-width: 100%;
+    position: relative;
+    overflow: hidden;
   }
-  .countdown.flight-soon { background: linear-gradient(135deg, var(--gold) 0%, #c98a18 100%); box-shadow: 0 6px 20px rgba(249, 178, 52, 0.35); }
-  .countdown.flight-passed { background: linear-gradient(135deg, var(--blue) 0%, #08305a 100%); box-shadow: 0 6px 20px rgba(15, 76, 138, 0.25); }
+  .countdown::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .countdown.flight-soon { background: linear-gradient(135deg, var(--gold) 0%, #c98a18 100%); box-shadow: 0 10px 30px rgba(249, 178, 52, 0.4); }
+  .countdown.flight-passed { background: linear-gradient(135deg, var(--blue) 0%, #08305a 100%); box-shadow: 0 10px 30px rgba(15, 76, 138, 0.3); }
   .countdown-label {
     font-family: var(--display);
-    font-size: 13px;
-    font-weight: 600;
-    opacity: 0.9;
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0.95;
     letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
   }
   .countdown-grid {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     direction: ltr;
+    position: relative;
+    z-index: 1;
   }
   .cd-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 44px;
+    min-width: 56px;
   }
   .cd-num {
     font-family: var(--display);
-    font-size: 28px;
+    font-size: 38px;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
   .cd-label {
-    font-size: 10px;
-    font-weight: 500;
-    margin-top: 2px;
-    opacity: 0.85;
-    letter-spacing: 0.04em;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+    opacity: 0.9;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .cd-sep {
     font-family: var(--display);
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     opacity: 0.5;
     align-self: flex-start;
@@ -219,9 +317,11 @@
   }
   .countdown-tag {
     font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 800;
     padding-right: 4px;
+    position: relative;
+    z-index: 1;
   }
 
 
@@ -405,33 +505,88 @@
   }
 
   .hero h1 {
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(40px, 8vw, 76px); line-height: 0.95;
-    letter-spacing: -0.04em; margin-bottom: 8px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(40px, 8.5vw, 78px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-align: center;
+    position: relative;
   }
-  /* Tri-color title using host country flags */
-  .hero h1 .t1 { color: #d6364a; }           /* red - Mexico/Canada */
-  .hero h1 .t2 { color: #0f4c8a; }           /* blue - USA */
-  .hero h1 .t3 { color: #00a155; }           /* green - Mexico */
+  /* Tri-color title with shadow effects */
+  .hero h1 .t1 {
+    background: linear-gradient(135deg, #ff4861 0%, #d6364a 50%, #a82a3c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 4px 20px rgba(214, 54, 74, 0.15);
+    filter: drop-shadow(0 2px 0 rgba(214, 54, 74, 0.08));
+  }
+  .hero h1 .t2 {
+    background: linear-gradient(135deg, #1968b3 0%, #0f4c8a 50%, #08305a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(15, 76, 138, 0.08));
+  }
+  .hero h1 .t3 {
+    background: linear-gradient(135deg, #1ec575 0%, #00a155 50%, #007d40 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(0, 161, 85, 0.08));
+  }
+
+  /* Decorative line under title */
+  .hero h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 14px auto 0;
+    background: linear-gradient(90deg, #d6364a 0%, #0f4c8a 50%, #00a155 100%);
+    border-radius: 100px;
+    opacity: 0.7;
+  }
 
   .hero-sub {
     font-family: var(--display);
     font-weight: 700;
-    font-size: clamp(28px, 5vw, 44px);
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin-bottom: 24px;
+    font-size: clamp(24px, 4.2vw, 34px);
+    letter-spacing: -0.01em;
+    margin: 0 auto 28px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 14px;
     line-height: 1;
     width: fit-content;
+    background: linear-gradient(135deg, #f9b234 0%, #c98a18 50%, #8a5e0e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .hero-sub span {
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   .trophy-icon {
-    width: clamp(36px, 6vw, 50px);
-    height: clamp(56px, 9.5vw, 80px);
+    width: clamp(40px, 7vw, 56px);
+    height: clamp(64px, 11vw, 90px);
     flex-shrink: 0;
-    filter: drop-shadow(0 4px 8px rgba(201, 138, 24, 0.4));
+    filter: drop-shadow(0 4px 12px rgba(201, 138, 24, 0.45));
+    animation: trophy-glow 3s ease-in-out infinite;
+  }
+  @keyframes trophy-glow {
+    0%, 100% { filter: drop-shadow(0 4px 12px rgba(201, 138, 24, 0.45)); }
+    50% { filter: drop-shadow(0 6px 20px rgba(249, 178, 52, 0.6)); }
   }
 
   .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
@@ -453,7 +608,7 @@
   .main-tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 24px;
+    margin: 0 auto 24px;
     background: rgba(255, 255, 255, 0.6);
     padding: 6px;
     border-radius: 100px;
@@ -1463,6 +1618,7 @@
     z-index: 50;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     width: fit-content;
+    margin: 0 auto;
   }
 
   .switch-btn {
@@ -2382,36 +2538,42 @@
     .container { padding: 0 12px; }
 
     /* Hero */
-    .hero { padding: 24px 0 12px; }
+    .hero { padding: 24px 0 16px; text-align: center; }
     .hero h1 {
-      font-size: clamp(34px, 9vw, 52px) !important;
-      line-height: 1;
-      letter-spacing: -0.02em;
+      font-size: clamp(38px, 10vw, 60px) !important;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+    .hero h1::after {
+      width: 60px;
+      height: 3px;
+      margin-top: 10px;
     }
     .hero-sub {
-      font-size: clamp(18px, 5.5vw, 26px) !important;
-      margin-bottom: 16px;
-      gap: 8px !important;
+      font-size: clamp(22px, 6vw, 32px) !important;
+      margin: 0 auto 20px;
+      gap: 10px !important;
     }
     .trophy-icon {
-      width: clamp(32px, 7vw, 44px) !important;
-      height: clamp(50px, 11vw, 70px) !important;
+      width: clamp(38px, 8vw, 50px) !important;
+      height: clamp(60px, 12vw, 80px) !important;
     }
 
-    /* Countdown */
+    /* Countdown - bigger and centered */
     .countdown {
-      padding: 10px 14px;
-      gap: 8px;
-      margin-bottom: 20px;
+      padding: 14px 18px;
+      gap: 12px;
+      margin: 0 auto 24px;
       flex-wrap: nowrap;
+      justify-content: center;
     }
-    .countdown-label { font-size: 11px; flex-shrink: 0; }
-    .countdown-grid { gap: 4px; }
-    .cd-num { font-size: 18px; }
-    .cd-label { font-size: 8px; }
-    .cd-unit { min-width: 28px; }
-    .cd-sep { font-size: 14px; padding: 0 2px; }
-    .countdown-tag { font-size: 10px; flex-shrink: 0; }
+    .countdown-label { font-size: 13px; flex-shrink: 0; }
+    .countdown-grid { gap: 5px; }
+    .cd-num { font-size: 26px; }
+    .cd-label { font-size: 9px; }
+    .cd-unit { min-width: 38px; }
+    .cd-sep { font-size: 20px; padding: 0 2px; }
+    .countdown-tag { font-size: 13px; flex-shrink: 0; }
 
     /* Main tabs - center on mobile */
     .main-tabs {
@@ -2477,6 +2639,7 @@
     .section-title { font-size: 22px !important; }
     .section-label { font-size: 11px; }
     .section-sub { font-size: 13px; line-height: 1.5; }
+    .view.active.section { padding-top: 36px; }
 
     /* Day cards */
     .day { border-radius: 14px; }
@@ -2684,9 +2847,8 @@
     .item.now .item-time { padding: 5px 8px; font-size: 11px; }
 
     /* Skyline / decor */
-    .skyline-bg { height: 130px; opacity: 0.6; }
-    .confetti { display: none; }
-    .bunting { transform: scale(0.7); transform-origin: top center; }
+    .skyline-bg { height: 280px; opacity: 0.95; background-size: 800px 280px !important; }
+    .bunting { bottom: 150px; height: 45px; background-size: 600px 45px !important; }
     .bg-blob { opacity: 0.25 !important; filter: blur(70px); }
   }
 
@@ -2702,12 +2864,12 @@
     .switch-btn { padding: 7px 9px; font-size: 11px; }
     .switch-btn svg { display: none; }
 
-    .countdown { padding: 8px 10px; }
-    .cd-num { font-size: 16px; }
-    .cd-unit { min-width: 24px; }
-    .cd-sep { font-size: 12px; padding: 0; }
-    .countdown-label { font-size: 10px; }
-    .countdown-tag { font-size: 9px; padding: 3px 7px; }
+    .countdown { padding: 12px 14px; gap: 8px; }
+    .cd-num { font-size: 22px; }
+    .cd-unit { min-width: 32px; }
+    .cd-sep { font-size: 16px; padding: 0; }
+    .countdown-label { font-size: 11px; }
+    .countdown-tag { font-size: 11px; padding: 3px 7px; }
 
     .section-title { font-size: 20px !important; }
     .day-title { font-size: 13px; }
@@ -2749,6 +2911,7 @@
 
 <!-- NYC skyline (fixed to viewport bottom, runs across whole page) -->
 <div class="skyline-bg" aria-hidden="true"></div>
+<div class="bunting" aria-hidden="true"></div>
 
 <!-- Confetti falling continuously -->
 <div class="confetti-container" aria-hidden="true"></div>
@@ -2757,9 +2920,67 @@
 
   <section class="hero">
     <h1>
-      <span class="t1">האחים קורנס</span><br>
-      <span class="t2">קורעים</span> <span class="t3">את ניו יורק</span>
+      <span class="t1"><span class="letter">ה</span><span class="letter">א</span><span class="letter">ח</span><span class="letter">י</span><span class="letter">ם</span> <span class="letter kick-end">ק</span><span class="letter">ו</span><span class="letter">ר</span><span class="letter">נ</span><span class="letter">ס</span></span><br>
+      <span class="t2"><span class="letter">ק</span><span class="letter">ו</span><span class="letter">ר</span><span class="letter">ע</span><span class="letter">י</span><span class="letter">ם</span></span> <span class="t3"><span class="letter">א</span><span class="letter">ת</span> <span class="letter">נ</span><span class="letter">י</span><span class="letter">ו</span> <span class="letter kick-start">י</span><span class="letter">ו</span><span class="letter">ר</span><span class="letter">ק</span></span>
     </h1>
+
+    <!-- Soccer ball that flies between letters -->
+    <div class="soccer-ball" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ballShine" cx="35%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="60%" stop-color="#f5f5f5"/>
+            <stop offset="100%" stop-color="#d0d0d0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Ball base (white sphere) -->
+        <circle cx="50" cy="50" r="47" fill="url(#ballShine)" stroke="#000" stroke-width="1"/>
+
+        <!-- Center pentagon (black) - the heart of the pattern -->
+        <polygon points="50,32 64,42 59,58 41,58 36,42" fill="#000"/>
+
+        <!-- Top-left black pentagon -->
+        <polygon points="22,28 36,22 36,42 26,46 16,38" fill="#000"/>
+
+        <!-- Top-right black pentagon -->
+        <polygon points="78,28 64,22 64,42 74,46 84,38" fill="#000"/>
+
+        <!-- Bottom-left black pentagon -->
+        <polygon points="28,72 41,58 41,75 32,82 20,76" fill="#000"/>
+
+        <!-- Bottom-right black pentagon -->
+        <polygon points="72,72 59,58 59,75 68,82 80,76" fill="#000"/>
+
+        <!-- Connecting lines for hexagonal pattern -->
+        <g stroke="#000" stroke-width="1.2" fill="none" stroke-linecap="round">
+          <!-- Lines from center pentagon outward -->
+          <line x1="50" y1="32" x2="50" y2="18"/>
+          <line x1="64" y1="42" x2="74" y2="38"/>
+          <line x1="59" y1="58" x2="68" y2="65"/>
+          <line x1="41" y1="58" x2="32" y2="65"/>
+          <line x1="36" y1="42" x2="26" y2="38"/>
+          <!-- Lines from outer pentagons to edges -->
+          <line x1="22" y1="28" x2="14" y2="20"/>
+          <line x1="36" y1="22" x2="42" y2="14"/>
+          <line x1="78" y1="28" x2="86" y2="20"/>
+          <line x1="64" y1="22" x2="58" y2="14"/>
+          <line x1="16" y1="38" x2="6" y2="44"/>
+          <line x1="84" y1="38" x2="94" y2="44"/>
+          <line x1="28" y1="72" x2="20" y2="80"/>
+          <line x1="20" y1="76" x2="10" y2="74"/>
+          <line x1="32" y1="82" x2="34" y2="92"/>
+          <line x1="72" y1="72" x2="80" y2="80"/>
+          <line x1="80" y1="76" x2="90" y2="74"/>
+          <line x1="68" y1="82" x2="66" y2="92"/>
+        </g>
+
+        <!-- Subtle highlight for 3D effect -->
+        <ellipse cx="35" cy="32" rx="8" ry="5" fill="white" opacity="0.5"/>
+      </svg>
+    </div>
+  </section>
     <p class="hero-sub">
       <svg class="trophy-icon" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -5319,6 +5540,165 @@
   // Initial burst so it looks alive immediately
   for (let i = 0; i < 20; i++) {
     setTimeout(spawnConfetti, i * 100);
+  }
+
+  // ============ SOCCER BALL ANIMATION ============
+  function startBallAnimation() {
+    const ball = document.querySelector('.soccer-ball');
+    const heroEl = document.querySelector('.hero');
+    const h1 = heroEl?.querySelector('h1');
+    if (!ball || !heroEl || !h1) return;
+
+    // Get all letters
+    const letters = Array.from(h1.querySelectorAll('.letter'));
+    if (letters.length === 0) return;
+
+    // Find specific letters for kicks
+    const kickStart = h1.querySelector('.kick-start'); // ק of יורק
+    const kickEnd = h1.querySelector('.kick-end');     // ק of קורנס
+
+    // Pick 1 intermediate letter to bump (between the two kicks)
+    // For RTL: ball goes kick-start (left) → one middle letter → kick-end (right)
+    // Total = 3 letter touches: ק of יורק, middle letter, ק of קורנס
+    const bumpLetters = [];
+    // Pick a letter from "קורעים" - middle of the bottom line
+    const t2Letters = letters.filter(l => l.closest('.t2'));
+    if (t2Letters.length > 2) bumpLetters.push(t2Letters[Math.floor(t2Letters.length / 2)]);
+
+    function getLetterPosition(letter) {
+      const heroRect = heroEl.getBoundingClientRect();
+      const letterRect = letter.getBoundingClientRect();
+      return {
+        x: letterRect.left - heroRect.left + letterRect.width / 2,
+        y: letterRect.top - heroRect.top + letterRect.height / 2
+      };
+    }
+
+    function moveBallTo(x, y, duration) {
+      return new Promise(resolve => {
+        const ballSize = ball.offsetWidth;
+        ball.style.transition = `transform ${duration}ms cubic-bezier(0.4, 0, 0.6, 1), opacity 0.2s`;
+        ball.style.transform = `translate(${x - ballSize / 2}px, ${y - ballSize / 2}px)`;
+        setTimeout(resolve, duration);
+      });
+    }
+
+    function arcBallTo(fromPos, toPos, duration, arcHeight) {
+      // Animate ball with an arc using Web Animations API
+      return new Promise(resolve => {
+        const ballSize = ball.offsetWidth;
+        const fromX = fromPos.x - ballSize / 2;
+        const fromY = fromPos.y - ballSize / 2;
+        const toX = toPos.x - ballSize / 2;
+        const toY = toPos.y - ballSize / 2;
+        const midX = (fromX + toX) / 2;
+        const midY = Math.min(fromY, toY) - arcHeight;
+
+        ball.animate([
+          { transform: `translate(${fromX}px, ${fromY}px)` },
+          { transform: `translate(${midX}px, ${midY}px)`, offset: 0.5 },
+          { transform: `translate(${toX}px, ${toY}px)` }
+        ], {
+          duration: duration,
+          easing: 'linear',
+          fill: 'forwards'
+        });
+
+        setTimeout(resolve, duration);
+      });
+    }
+
+    function kickLetter(letter, isEnd = false) {
+      if (!letter) return;
+      letter.classList.remove('kicking', 'kicking-end');
+      void letter.offsetWidth; // force reflow
+      letter.classList.add(isEnd ? 'kicking-end' : 'kicking');
+      setTimeout(() => letter.classList.remove(isEnd ? 'kicking-end' : 'kicking'), 500);
+    }
+
+    function bumpLetter(letter) {
+      if (!letter) return;
+      letter.classList.remove('bumping');
+      void letter.offsetWidth;
+      letter.classList.add('bumping');
+      setTimeout(() => letter.classList.remove('bumping'), 400);
+    }
+
+    async function runCycle() {
+      const heroRect = heroEl.getBoundingClientRect();
+      const ballSize = ball.offsetWidth;
+
+      // Get all key positions
+      const startKickPos = kickStart ? getLetterPosition(kickStart) : { x: 50, y: 100 };
+      const endKickPos = kickEnd ? getLetterPosition(kickEnd) : { x: heroRect.width - 50, y: 100 };
+      const bumpPositions = bumpLetters.map(l => getLetterPosition(l));
+
+      // Position 1: Enter from far left
+      const enterPos = { x: -60, y: startKickPos.y + 20 };
+      ball.style.transition = 'none';
+      ball.style.transform = `translate(${enterPos.x - ballSize / 2}px, ${enterPos.y - ballSize / 2}px)`;
+      ball.style.opacity = '0';
+      await new Promise(r => setTimeout(r, 100));
+
+      // Fade in
+      ball.style.opacity = '1';
+
+      // Step 1: Ball flies in from left to ק of יורק
+      await arcBallTo(enterPos, startKickPos, 900, 30);
+
+      // Step 2: ק kicks ball! 
+      kickLetter(kickStart, false);
+      await new Promise(r => setTimeout(r, 100)); // small pause for kick visual
+
+      // Step 3: Ball arcs to first bump letter
+      let currentPos = startKickPos;
+      for (let i = 0; i < bumpPositions.length; i++) {
+        const targetPos = bumpPositions[i];
+        await arcBallTo(currentPos, targetPos, 700, 50);
+        bumpLetter(bumpLetters[i]);
+        currentPos = targetPos;
+        await new Promise(r => setTimeout(r, 80));
+      }
+
+      // Step 4: Ball arcs to ק of קורנס
+      await arcBallTo(currentPos, endKickPos, 800, 60);
+
+      // Step 5: ק of קורנס kicks ball OUT
+      kickLetter(kickEnd, true);
+      await new Promise(r => setTimeout(r, 100));
+
+      // Step 6: Ball flies out to the right
+      const exitPos = { x: heroRect.width + 80, y: endKickPos.y - 50 };
+      await arcBallTo(endKickPos, exitPos, 700, 30);
+
+      // Fade out
+      ball.style.opacity = '0';
+
+      // Wait before next cycle
+      await new Promise(r => setTimeout(r, 1500));
+
+      // Repeat
+      runCycle();
+    }
+
+    // Start after a short delay so layout settles
+    setTimeout(runCycle, 1500);
+
+    // Recalculate on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        // animation will recalculate positions on next cycle
+      }, 300);
+    });
+  }
+
+  // Start ball animation when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startBallAnimation);
+  } else {
+    startBallAnimation();
   }
 
 </script>
