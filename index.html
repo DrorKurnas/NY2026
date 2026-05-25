@@ -53,32 +53,33 @@
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
-    min-height: 100vh;
   }
+  html { overflow-x: hidden; }
 
-  /* Atmospheric blobs spread across entire page */
+  /* Atmospheric blobs - fixed positions so they don't extend document height */
   .bg-blob {
-    position: absolute;
+    position: fixed;
     border-radius: 50%;
     filter: blur(90px);
     pointer-events: none;
     z-index: 0;
-    opacity: 0.55;
+    opacity: 0.4;
   }
 
   .bg-blob.b1 { width: 520px; height: 520px; background: var(--accent-soft); top: -120px; right: -180px; }
-  .bg-blob.b2 { width: 440px; height: 440px; background: var(--gold-soft); top: 700px; left: -180px; opacity: 0.6; }
-  .bg-blob.b3 { width: 480px; height: 480px; background: var(--blue-soft); top: 1500px; right: -200px; opacity: 0.55; }
-  .bg-blob.b4 { width: 420px; height: 420px; background: var(--red-soft); top: 2300px; left: -160px; opacity: 0.5; }
-  .bg-blob.b5 { width: 460px; height: 460px; background: var(--accent-soft); top: 3100px; right: -180px; opacity: 0.5; }
-  .bg-blob.b6 { width: 440px; height: 440px; background: var(--gold-soft); top: 3900px; left: -160px; opacity: 0.55; }
-  .bg-blob.b7 { width: 420px; height: 420px; background: var(--blue-soft); top: 4700px; right: -160px; opacity: 0.5; }
-  .bg-blob.b8 { width: 460px; height: 460px; background: var(--red-soft); top: 5500px; left: -180px; opacity: 0.5; }
-  .bg-blob.b9 { width: 440px; height: 440px; background: var(--accent-soft); top: 6300px; right: -160px; opacity: 0.5; }
-  .bg-blob.b10 { width: 480px; height: 480px; background: var(--gold-soft); top: 7100px; left: -180px; opacity: 0.55; }
-  .bg-blob.b11 { width: 440px; height: 440px; background: var(--blue-soft); top: 7900px; right: -160px; opacity: 0.5; }
-  .bg-blob.b12 { width: 460px; height: 460px; background: var(--red-soft); top: 8700px; left: -160px; opacity: 0.5; }
-  .bg-blob.b13 { width: 420px; height: 420px; background: var(--accent-soft); top: 9500px; right: -180px; opacity: 0.5; }
+  .bg-blob.b2 { width: 440px; height: 440px; background: var(--gold-soft); top: 30%; left: -180px; opacity: 0.35; }
+  .bg-blob.b3 { width: 480px; height: 480px; background: var(--blue-soft); top: 60%; right: -200px; opacity: 0.35; }
+  .bg-blob.b4 { width: 420px; height: 420px; background: var(--red-soft); bottom: -100px; left: -160px; opacity: 0.3; }
+  /* Remove the rest - they were positioned far down (top: 1500px+) and forced document height */
+  .bg-blob.b5,
+  .bg-blob.b6,
+  .bg-blob.b7,
+  .bg-blob.b8,
+  .bg-blob.b9,
+  .bg-blob.b10,
+  .bg-blob.b11,
+  .bg-blob.b12,
+  .bg-blob.b13 { display: none; }
 
   /* NYC skyline running along the entire page, fixed to viewport bottom */
   .skyline-bg {
@@ -226,6 +227,142 @@
     .countdown { padding: 12px 16px; gap: 10px; }
     .cd-num { font-size: 22px; }
     .cd-unit { min-width: 36px; }
+  }
+
+  /* ============ MOBILE OPTIMIZATIONS ============ */
+  @media (max-width: 640px) {
+    .container { padding: 0 14px; }
+
+    /* Hero */
+    .hero { padding: 30px 0 16px; }
+    .hero h1 { font-size: clamp(36px, 9vw, 56px) !important; line-height: 1; letter-spacing: -0.02em; }
+    .hero-sub { font-size: clamp(20px, 6vw, 30px) !important; margin-bottom: 18px; }
+    .trophy-icon { width: 40px !important; height: 40px !important; }
+
+    /* Countdown */
+    .countdown { padding: 10px 14px; gap: 8px; margin-bottom: 22px; }
+    .countdown-label { font-size: 11px; }
+    .cd-num { font-size: 18px; }
+    .cd-label { font-size: 8px; }
+    .cd-unit { min-width: 30px; }
+    .cd-sep { font-size: 16px; }
+    .countdown-tag { font-size: 11px; }
+
+    /* Main tabs */
+    .main-tabs { gap: 4px; padding: 5px; margin-bottom: 16px; }
+    .main-tab { padding: 9px 14px; font-size: 13px; }
+
+    /* View switcher */
+    .switcher { padding: 3px; gap: 2px; }
+    .switch-btn { padding: 8px 12px; font-size: 12px; }
+    .switch-btn svg { width: 16px; height: 16px; }
+
+    /* Sections */
+    .section { padding: 16px 0 22px; }
+    .section-title { font-size: 24px !important; }
+    .section-label { font-size: 11px; }
+    .section-sub { font-size: 13px; }
+
+    /* Day cards */
+    .day { border-radius: 14px; }
+    .day-header { padding: 14px 14px; gap: 10px; }
+    .day-num .n { font-size: 26px; }
+    .day-num .w { font-size: 10px; }
+    .day-title { font-size: 15px; }
+    .day-sub { font-size: 12px; }
+    .item-time { font-size: 12px; min-width: 50px; }
+    .item-body { font-size: 13px; }
+    .item-body strong { font-size: 14px; }
+    .item-body .note { font-size: 11px; }
+
+    /* Calendar */
+    .cal-grid { gap: 4px; }
+    .cal-cell { font-size: 11px; padding: 6px 3px; min-height: 50px; }
+    .cal-day-num { font-size: 14px; }
+
+    /* Weather */
+    .weather-card { padding: 14px; }
+    .weather-strip { gap: 6px; }
+    .wd-cell { padding: 6px 4px; min-width: 50px; }
+    .wd-day { font-size: 10px; }
+    .wd-temp { font-size: 14px; }
+
+    /* Currency */
+    .currency-card { padding: 16px; }
+    .rate-value { font-size: 18px; }
+    .conv-input { font-size: 22px; }
+    .conv-unit { font-size: 13px; min-width: 70px; }
+    .preset-btn { padding: 5px 10px; font-size: 12px; }
+
+    /* Checklist */
+    .check-group-head h3 { font-size: 17px; }
+    .check-text { font-size: 13px; }
+    .checklist-progress { padding: 14px; }
+
+    /* Mundial fixtures */
+    .fixtures-filter { gap: 6px; }
+    .ff-btn { padding: 7px 12px; font-size: 12px; }
+    .fixture-row { padding: 10px 10px; gap: 8px; }
+    .fixture-time { font-size: 11px; min-width: 38px; }
+    .fixture-teams { font-size: 11px; gap: 4px; }
+    .fixture-team { gap: 4px; }
+    .fixture-flag { width: 18px; height: 18px; }
+    .fixture-score { font-size: 13px; min-width: 40px; padding: 3px 7px; }
+    .fixture-day-header { font-size: 14px; padding: 8px 12px; }
+
+    /* Groups */
+    .groups-grid { grid-template-columns: 1fr; gap: 12px; }
+    .group-card { padding: 14px; }
+    .group-title { font-size: 18px; }
+    .group-table { font-size: 12px; }
+
+    /* Squads */
+    .squads-list { grid-template-columns: 1fr; gap: 12px; }
+    .squad-card { padding: 14px; }
+    .squad-name { font-size: 15px; }
+    .squad-meta { font-size: 12px; }
+    .squad-star { font-size: 10px; padding: 3px 7px; }
+
+    /* Next Match */
+    .next-match-card { padding: 22px 14px; }
+    .nm-teams { gap: 14px; }
+    .nm-flag { width: 44px; height: 44px; }
+    .nm-team { min-width: 70px; }
+    .nm-team-name { font-size: 12px; }
+    .nm-vs { font-size: 20px; }
+    .nm-meta { font-size: 12px; }
+    .nm-countdown { padding: 10px 16px; gap: 8px; }
+    .nm-time-num { font-size: 17px; }
+
+    /* Bracket - on mobile show simplified */
+    .bracket-wrap { padding: 12px 8px; }
+    .bracket-tree { min-width: 940px; gap: 8px; }
+    .bracket-round { min-width: 170px; }
+    .bracket-match { padding: 6px 8px; }
+    .bracket-team { font-size: 10px; padding: 3px 5px; }
+    .bracket-round-header { font-size: 11px; padding: 6px 4px; }
+
+    /* Map */
+    #map { height: 400px !important; }
+
+    /* Skyline smaller */
+    .skyline { height: 120px !important; opacity: 0.6; }
+
+    /* Confetti less */
+    .confetti { display: none; }
+
+    /* Flag bunting */
+    .bunting { transform: scale(0.7); transform-origin: top center; }
+  }
+
+  @media (max-width: 380px) {
+    .container { padding: 0 10px; }
+    .hero h1 { font-size: 32px !important; }
+    .main-tab { padding: 8px 10px; font-size: 12px; }
+    .switch-btn { padding: 7px 9px; font-size: 11px; }
+    .switch-btn svg { display: none; }
+    .countdown { flex-wrap: wrap; justify-content: center; }
+    .cd-num { font-size: 16px; }
   }
 
   /* "You are here" indicator on current day's timeline */
@@ -431,10 +568,10 @@
     width: fit-content;
   }
   .trophy-icon {
-    width: clamp(40px, 7vw, 56px);
-    height: clamp(40px, 7vw, 56px);
+    width: clamp(36px, 6vw, 50px);
+    height: clamp(56px, 9.5vw, 80px);
     flex-shrink: 0;
-    filter: drop-shadow(0 2px 4px rgba(201, 138, 24, 0.3));
+    filter: drop-shadow(0 4px 8px rgba(201, 138, 24, 0.4));
   }
 
   .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
@@ -798,93 +935,593 @@
   .group-flag { width: 20px; height: 20px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
   .group-flag img { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Bracket */
+  /* Bracket - symmetric two-sided */
   .bracket-wrap {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 20px;
-    overflow-x: auto;
-    direction: ltr;
+    border-radius: 16px;
+    padding: 18px 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
   }
-  .bracket-rounds {
-    display: flex;
-    gap: 20px;
-    min-width: max-content;
-    padding: 10px 0;
+  .bracket-intro {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-family: var(--display);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.55;
   }
-  .bracket-col {
+  .bracket-intro strong { color: var(--ink); }
+
+  /* Main horizontal layout */
+  .bracket-main {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1.3fr 1fr 1.1fr;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  /* Each column is a flex container */
+  .br-col {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    min-width: 200px;
     gap: 8px;
   }
-  .bracket-col-header {
+  .br-col.col-center {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  /* Match card */
+  .bm {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    padding-top: 18px;
+    font-family: var(--display);
+    transition: all 0.15s;
+    direction: rtl;
+    position: relative;
+  }
+  .bm:hover {
+    border-color: var(--accent);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    z-index: 2;
+  }
+  .bm-tag {
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* R16 cards */
+  .bm-r16 { border: 2px solid var(--accent); }
+  .bm-r16 .bm-tag { background: var(--accent); }
+
+  /* QF cards */
+  .bm-qf { border: 2px solid var(--blue); background: #eef2f7; }
+  .bm-qf .bm-tag { background: var(--blue); }
+
+  /* SF cards */
+  .bm-sf { border: 2px solid var(--red); background: #fbeaec; }
+  .bm-sf .bm-tag { background: var(--red); }
+
+  /* FINAL */
+  .bm-final {
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe9c4 100%);
+    text-align: center;
+    padding: 16px 12px 12px;
+    box-shadow: 0 8px 24px rgba(249, 178, 52, 0.3);
+  }
+  .bm-final .bm-tag {
+    background: linear-gradient(135deg, var(--gold) 0%, #c98a18 100%);
+    font-size: 11px;
+  }
+  .bm-final .trophy-inline {
+    display: block;
+    margin: 4px auto 8px;
+  }
+  .bm-final .bm-team {
+    background: rgba(255,255,255,0.85);
+    max-width: 90%;
+    margin: 3px auto;
+  }
+  .bm-final .bm-meta {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #8a5e0e;
+    font-weight: 700;
+  }
+
+  /* Team source labels (R16) */
+  .bm-team {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+    padding: 3px 6px;
+    line-height: 1.3;
+    text-align: center;
+    background: var(--card);
+    border-radius: 4px;
+    margin: 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bm-r16 .bm-team {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+  }
+  .bm-team.placeholder { color: var(--ink-soft); }
+
+  .bm-vs {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 1px 0;
+  }
+  .bm-qf .bm-vs { color: var(--blue); }
+  .bm-sf .bm-vs { color: var(--red); }
+  .bm-final .bm-vs { color: #8a5e0e; font-size: 11px; padding: 4px 0; }
+
+  /* Third place card */
+  .bracket-third {
+    background: linear-gradient(135deg, #fef3e0 0%, #ffe1c0 100%);
+    border: 2px solid #c98a18;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 16px;
+    text-align: center;
+    font-family: var(--display);
+    position: relative;
+  }
+  .bracket-third .bm-tag {
+    background: linear-gradient(135deg, #d9a85e 0%, #a16d2c 100%);
+    position: static;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .bracket-third .bm-team {
+    background: rgba(255,255,255,0.7);
+    display: inline-block;
+    margin: 3px 4px;
+    font-size: 11px;
+  }
+  .bracket-third-meta {
+    font-size: 10px;
+    color: #a16d2c;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  /* Mobile - stack into vertical */
+  @media (max-width: 720px) {
+    .bracket-main {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .br-col {
+      gap: 10px;
+    }
+    .br-col.col-r16-l { grid-column: 1; grid-row: 1; }
+    .br-col.col-r16-r { grid-column: 2; grid-row: 1; }
+    .br-col.col-qf-l { grid-column: 1; grid-row: 2; }
+    .br-col.col-qf-r { grid-column: 2; grid-row: 2; }
+    .br-col.col-center { grid-column: 1 / 3; grid-row: 3; }
+
+    .bm { padding: 7px 9px; padding-top: 16px; }
+    .bm-team { font-size: 10px; }
+    .bm-tag { font-size: 9px; padding: 2px 7px; }
+  }
+
+  /* ===== MUNDIAL TAB - styled background ===== */
+  .tab-mundial-themed {
+    position: relative;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(0, 161, 85, 0.06) 0%, transparent 35%),
+      radial-gradient(circle at 85% 25%, rgba(214, 54, 74, 0.06) 0%, transparent 35%),
+      radial-gradient(circle at 50% 80%, rgba(249, 178, 52, 0.07) 0%, transparent 40%),
+      linear-gradient(180deg, rgba(15, 76, 138, 0.04) 0%, transparent 100%);
+    border-radius: 20px;
+    padding: 16px 8px 24px;
+    margin-top: 8px;
+    border: 1px solid rgba(0, 161, 85, 0.08);
+    overflow: hidden;
+  }
+
+  /* Decorative pattern - subtle football pattern */
+  .tab-mundial-themed::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 8% 12%, rgba(0,0,0,0.025) 1px, transparent 2px),
+      radial-gradient(circle at 92% 18%, rgba(0,0,0,0.025) 1px, transparent 2px),
+      radial-gradient(circle at 22% 78%, rgba(0,0,0,0.025) 1px, transparent 2px),
+      radial-gradient(circle at 78% 88%, rgba(0,0,0,0.025) 1px, transparent 2px);
+    background-size: 220px 220px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Decorative emojis floating */
+  .tab-mundial-themed::after {
+    content: '⚽';
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 28px;
+    opacity: 0.08;
+    pointer-events: none;
+    transform: rotate(-15deg);
+    z-index: 0;
+  }
+
+  .tab-mundial-themed > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Banner-like header decoration at top of mundial tab */
+  .mundial-banner {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0, 161, 85, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(214, 54, 74, 0.18) 0%, transparent 50%),
+      linear-gradient(135deg, #fff8e1 0%, #fffefb 50%, #f0f5ff 100%);
+    border: 1px solid rgba(249, 178, 52, 0.3);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(249, 178, 52, 0.15);
+  }
+  .mundial-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg,
+      var(--accent) 0%, var(--accent) 33%,
+      white 33%, white 66%,
+      var(--red) 66%, var(--red) 100%
+    );
+  }
+  .mundial-banner::after {
+    content: '';
+    position: absolute;
+    top: 5px; right: -40px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(249, 178, 52, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mundial-banner-emoji {
+    font-size: 36px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  .mundial-banner-trophy {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .mundial-banner-text {
+    flex: 1;
+  }
+  .mundial-banner-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .mundial-banner-sub {
+    font-family: var(--display);
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+    font-weight: 600;
+  }
+
+  /* Mobile adjustments for mundial theme */
+  @media (max-width: 640px) {
+    .tab-mundial-themed { padding: 12px 6px 18px; }
+    .mundial-banner { padding: 12px 14px; gap: 10px; }
+    .mundial-banner-emoji { font-size: 28px; }
+    .mundial-banner-title { font-size: 15px; }
+    .mundial-banner-sub { font-size: 11px; }
+  }
+
+  /* Squads - new tab-based UI */
+  .squads-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Team selector - horizontal scrollable cards */
+  .team-selector {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+  }
+  .team-selector-label {
+    font-family: var(--display);
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .team-selector-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .team-group-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .team-group-label {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    padding: 0 4px;
+  }
+  .team-group-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .team-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--display);
+    overflow: hidden;
+  }
+  .team-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .team-btn.active {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 161, 85, 0.25);
+  }
+  .team-btn-flag {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .team-btn-flag img { width: 100%; height: 100%; object-fit: cover; }
+  .team-btn-name {
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  /* Selected team display */
+  .squad-detail {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  }
+  .squad-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .squad-detail-flag {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .squad-detail-flag img { width: 100%; height: 100%; object-fit: cover; }
+  .squad-detail-info { flex: 1; min-width: 0; }
+  .squad-detail-name {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .squad-detail-group {
+    font-family: var(--display);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .squad-detail-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .squad-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    background: var(--bg-soft);
+    border-radius: 10px;
+  }
+  .squad-meta-label {
+    font-family: var(--display);
+    font-size: 10px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .squad-meta-value {
+    font-family: var(--display);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .squad-section {
+    margin-bottom: 16px;
+  }
+  .squad-section-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .squad-section.pos-gk .squad-section-title { background: linear-gradient(135deg, var(--gold) 0%, #c98a18 100%); }
+  .squad-section.pos-def .squad-section-title { background: linear-gradient(135deg, var(--blue) 0%, #08305a 100%); }
+  .squad-section.pos-mid .squad-section-title { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); }
+  .squad-section.pos-fwd .squad-section-title { background: linear-gradient(135deg, var(--red) 0%, #a82a3c 100%); }
+  .squad-section-icon { font-size: 16px; }
+  .squad-section-count {
+    background: rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-right: auto;
+  }
+
+  .squad-players {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px;
+  }
+  .squad-player {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .squad-player.captain {
+    background: linear-gradient(90deg, var(--accent-soft) 0%, var(--bg-soft) 100%);
+    border-color: var(--accent);
+  }
+  .squad-player-num {
     font-family: var(--display);
     font-weight: 800;
     font-size: 13px;
-    color: var(--ink);
+    color: var(--accent);
+    min-width: 22px;
     text-align: center;
-    padding: 8px 0;
-    margin-bottom: 4px;
-    background: var(--accent-soft);
-    border-radius: 8px;
-    letter-spacing: 0.04em;
-  }
-  .bracket-match {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 8px 10px;
-    font-family: var(--display);
-    font-size: 11px;
-    min-height: 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-  }
-  .bracket-match.match-final {
-    background: linear-gradient(135deg, var(--gold-soft) 0%, #fce4a3 100%);
-    border-color: var(--gold);
-    box-shadow: 0 4px 12px rgba(249, 178, 52, 0.3);
-  }
-  .bracket-match-num {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    font-size: 8px;
-    color: var(--ink-faint);
-    font-weight: 700;
-  }
-  .bracket-team {
-    padding: 3px 4px;
+    background: var(--card);
+    padding: 2px 4px;
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin: 2px 0;
-    font-weight: 600;
+  }
+  .squad-player-name {
+    flex: 1;
     line-height: 1.2;
   }
-  .bracket-team.winner { background: rgba(0, 161, 85, 0.1); color: var(--accent); font-weight: 800; }
-  .bracket-team.placeholder { color: var(--ink-faint); font-style: italic; }
-  .bracket-vs {
-    text-align: center;
+  .squad-player-badge {
     font-size: 9px;
-    color: var(--ink-faint);
-    font-weight: 700;
-    padding: 1px 0;
-  }
-  .bracket-meta {
-    font-size: 9px;
-    color: var(--ink-faint);
-    text-align: center;
-    margin-top: 2px;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 100px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
   }
 
-  /* Squads */
+  .squad-no-selection {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--ink-soft);
+    font-family: var(--display);
+  }
+  .squad-no-selection-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .squad-partial-note {
+    background: var(--gold-soft);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-family: var(--display);
+    font-size: 12px;
+    color: #8a5e0e;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .squad-partial-note::before {
+    content: 'ℹ️';
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .team-group-buttons { grid-template-columns: repeat(2, 1fr); }
+    .team-btn-name { font-size: 10px; }
+    .squad-detail { padding: 18px 14px; }
+    .squad-detail-name { font-size: 20px; }
+    .squad-detail-flag { width: 48px; height: 48px; }
+    .squad-detail-meta { grid-template-columns: 1fr; }
+    .squad-players { grid-template-columns: 1fr; }
+  }
+
+  /* OLD squads styles - kept for backwards compatibility */
   .squads-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1678,6 +2315,16 @@
 
   .check-list li {
     border-bottom: 1px solid var(--line);
+    transition: opacity 0.3s, background 0.3s;
+  }
+
+  .check-list li.check-done {
+    opacity: 0.5;
+    background: var(--bg-soft);
+  }
+  .check-list li.check-done .check-text {
+    text-decoration: line-through;
+    text-decoration-color: var(--ink-faint);
   }
 
   .check-list li:last-child {
@@ -1932,27 +2579,69 @@
       <span class="t2">קורעים</span> <span class="t3">את ניו יורק</span>
     </h1>
     <p class="hero-sub">
-      <svg class="trophy-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <svg class="trophy-icon" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="trophyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#fcd76c"/>
-            <stop offset="50%" stop-color="#f9b234"/>
-            <stop offset="100%" stop-color="#c98a18"/>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff4b8"/>
+            <stop offset="25%" stop-color="#fcd76c"/>
+            <stop offset="55%" stop-color="#f9b234"/>
+            <stop offset="100%" stop-color="#a8740e"/>
+          </linearGradient>
+          <linearGradient id="goldShine" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fff9d8" stop-opacity="0.9"/>
+            <stop offset="50%" stop-color="#fff9d8" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#fff9d8" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="globeGrad" cx="0.35" cy="0.3" r="0.9">
+            <stop offset="0%" stop-color="#fff4b8"/>
+            <stop offset="40%" stop-color="#fcd76c"/>
+            <stop offset="80%" stop-color="#f9b234"/>
+            <stop offset="100%" stop-color="#8a5e0e"/>
+          </radialGradient>
+          <linearGradient id="greenBase" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1ea366"/>
+            <stop offset="100%" stop-color="#0d5a37"/>
           </linearGradient>
         </defs>
-        <!-- Base -->
-        <rect x="20" y="54" width="24" height="6" rx="1" fill="url(#trophyGrad)"/>
-        <rect x="24" y="50" width="16" height="5" fill="url(#trophyGrad)"/>
-        <!-- Stem -->
-        <rect x="28" y="42" width="8" height="9" fill="url(#trophyGrad)"/>
-        <!-- Cup bowl (FIFA trophy globe shape) -->
-        <path d="M16 14 Q16 8 24 7 L40 7 Q48 8 48 14 L46 32 Q44 42 32 44 Q20 42 18 32 Z" fill="url(#trophyGrad)"/>
-        <!-- Globe lines on the trophy -->
-        <ellipse cx="32" cy="22" rx="10" ry="3" fill="none" stroke="#8a5e0e" stroke-width="0.8" opacity="0.4"/>
-        <path d="M24 14 Q32 18 40 14" fill="none" stroke="#8a5e0e" stroke-width="0.8" opacity="0.4"/>
-        <path d="M22 28 Q32 32 42 28" fill="none" stroke="#8a5e0e" stroke-width="0.8" opacity="0.4"/>
-        <!-- Highlight -->
-        <path d="M20 16 Q22 14 26 13" stroke="#fff8dc" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+        <!-- Globe at top -->
+        <circle cx="50" cy="28" r="20" fill="url(#globeGrad)"/>
+        <!-- Continent shapes (abstract) -->
+        <path d="M40 22 Q44 18 48 20 Q50 24 47 28 Q44 30 41 28 Q38 26 40 22 Z" fill="#8a5e0e" opacity="0.35"/>
+        <path d="M52 18 Q58 16 60 20 Q61 24 58 26 Q54 26 52 22 Z" fill="#8a5e0e" opacity="0.35"/>
+        <path d="M45 33 Q50 35 55 33 Q56 37 52 39 Q47 39 45 36 Z" fill="#8a5e0e" opacity="0.35"/>
+        <!-- Highlight on globe -->
+        <ellipse cx="42" cy="20" rx="6" ry="4" fill="#fff9d8" opacity="0.5"/>
+
+        <!-- Trophy body - the two arms reaching up -->
+        <!-- Left arm/figure -->
+        <path d="M28 42 Q20 50 22 70 Q24 90 32 105 Q36 112 42 116 L42 50 Q38 44 28 42 Z" fill="url(#goldGrad)"/>
+        <!-- Right arm/figure -->
+        <path d="M72 42 Q80 50 78 70 Q76 90 68 105 Q64 112 58 116 L58 50 Q62 44 72 42 Z" fill="url(#goldGrad)"/>
+        <!-- Center column between arms -->
+        <path d="M42 50 Q40 60 42 75 Q44 95 50 116 Q56 95 58 75 Q60 60 58 50 Z" fill="url(#goldGrad)"/>
+
+        <!-- Shine highlights -->
+        <path d="M30 50 Q26 60 28 80 Q30 95 35 105" stroke="url(#goldShine)" stroke-width="2" fill="none" opacity="0.7"/>
+        <path d="M68 50 Q72 60 70 80" stroke="#fff9d8" stroke-width="1.5" fill="none" opacity="0.45"/>
+
+        <!-- Lower body taper -->
+        <path d="M42 116 L58 116 L56 122 L44 122 Z" fill="url(#goldGrad)"/>
+
+        <!-- Green base with gold rings -->
+        <!-- Top gold ring -->
+        <rect x="36" y="120" width="28" height="4" rx="1" fill="url(#goldGrad)"/>
+        <!-- Top green section -->
+        <path d="M34 124 L66 124 L65 132 L35 132 Z" fill="url(#greenBase)"/>
+        <!-- Middle gold ring -->
+        <rect x="33" y="131" width="34" height="4" rx="1" fill="url(#goldGrad)"/>
+        <!-- Bottom green section -->
+        <path d="M31 135 L69 135 L68 145 L32 145 Z" fill="url(#greenBase)"/>
+        <!-- Bottom gold ring -->
+        <rect x="30" y="144" width="40" height="5" rx="1" fill="url(#goldGrad)"/>
+
+        <!-- Subtle shadow under base -->
+        <ellipse cx="50" cy="151" rx="22" ry="2" fill="#000" opacity="0.15"/>
       </svg>
       <span>מונדיאל 2026</span>
     </p>
@@ -1976,7 +2665,30 @@
         🗽 הטיול
       </button>
       <button class="main-tab" data-tab="mundial">
-        🏆 מונדיאל 26'
+        <svg width="14" height="22" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-left:6px;">
+          <defs>
+            <linearGradient id="mtg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff4b8"/>
+              <stop offset="55%" stop-color="#f9b234"/>
+              <stop offset="100%" stop-color="#a8740e"/>
+            </linearGradient>
+            <linearGradient id="mgr" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1ea366"/>
+              <stop offset="100%" stop-color="#0d5a37"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="28" r="20" fill="url(#mtg)"/>
+          <path d="M28 42 Q20 50 22 70 Q24 90 32 105 Q36 112 42 116 L42 50 Q38 44 28 42 Z" fill="url(#mtg)"/>
+          <path d="M72 42 Q80 50 78 70 Q76 90 68 105 Q64 112 58 116 L58 50 Q62 44 72 42 Z" fill="url(#mtg)"/>
+          <path d="M42 50 Q40 60 42 75 Q44 95 50 116 Q56 95 58 75 Q60 60 58 50 Z" fill="url(#mtg)"/>
+          <path d="M42 116 L58 116 L56 122 L44 122 Z" fill="url(#mtg)"/>
+          <rect x="36" y="120" width="28" height="4" rx="1" fill="url(#mtg)"/>
+          <path d="M34 124 L66 124 L65 132 L35 132 Z" fill="url(#mgr)"/>
+          <rect x="33" y="131" width="34" height="4" rx="1" fill="url(#mtg)"/>
+          <path d="M31 135 L69 135 L68 145 L32 145 Z" fill="url(#mgr)"/>
+          <rect x="30" y="144" width="40" height="5" rx="1" fill="url(#mtg)"/>
+        </svg>
+        מונדיאל 26'
       </button>
     </div>
 
@@ -1992,6 +2704,18 @@
       <button class="switch-btn" data-view="map">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         מפה
+      </button>
+      <button class="switch-btn" data-view="checklist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        צ'קליסט
+      </button>
+      <button class="switch-btn" data-view="weather">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.8A7 7 0 1 0 4 14"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/></svg>
+        מזג אוויר
+      </button>
+      <button class="switch-btn" data-view="currency">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h4.5a2.5 2.5 0 0 1 0 5H9m6 5H9"/></svg>
+        מטבע
       </button>
     </div>
   </section>
@@ -2277,64 +3001,8 @@
     </div>
   </section>
 
-  <!-- WEATHER -->
-  <section class="section">
-    <div class="section-head">
-      <div class="section-label">תחזית</div>
-      <h2 class="section-title">מזג אוויר</h2>
-    </div>
-    <div class="weather-card">
-      <div class="weather-header">
-        <div>
-          <div class="weather-loc">ניו יורק · מנהטן</div>
-          <div class="weather-note">תחזית מבוססת ממוצעים היסטוריים ליוני · תתעדכן ככל שהטיול יתקרב</div>
-        </div>
-        <div class="weather-emoji-big">☀️</div>
-      </div>
-      <div class="weather-strip" id="weather-strip"></div>
-      <div class="weather-tips">
-        <span>👕 חולצה / שכבה קלה</span>
-        <span>☂️ מטרייה קומפקטית</span>
-        <span>🕶 משקפי שמש</span>
-        <span>🧴 קרם הגנה</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CURRENCY -->
-  <section class="section">
-    <div class="section-head">
-      <div class="section-label">שער מטבע חי</div>
-      <h2 class="section-title">המרה NIS ↔ USD</h2>
-    </div>
-    <div class="currency-card">
-      <div class="currency-rate" id="currency-rate">
-        <span class="rate-label">טוען שער...</span>
-      </div>
-      <div class="currency-converter">
-        <div class="conv-row">
-          <input type="number" id="conv-ils" class="conv-input" placeholder="0" inputmode="decimal">
-          <span class="conv-unit">₪ שקלים</span>
-        </div>
-        <div class="conv-arrow">⇅</div>
-        <div class="conv-row">
-          <input type="number" id="conv-usd" class="conv-input" placeholder="0" inputmode="decimal">
-          <span class="conv-unit">$ דולרים</span>
-        </div>
-      </div>
-      <div class="currency-presets">
-        <div class="preset-label">מהיר:</div>
-        <button class="preset-btn" data-usd="10">$10</button>
-        <button class="preset-btn" data-usd="20">$20</button>
-        <button class="preset-btn" data-usd="50">$50</button>
-        <button class="preset-btn" data-usd="100">$100</button>
-        <button class="preset-btn" data-usd="200">$200</button>
-      </div>
-    </div>
-  </section>
-
   <!-- CHECKLIST -->
-  <section class="section">
+  <section class="section view" id="view-checklist">
     <div class="section-head">
       <div class="section-label">צ'קליסט</div>
       <h2 class="section-title">לפני שטסים</h2>
@@ -2466,11 +3134,111 @@
 
     </div>
   </section>
+  <!-- WEATHER -->
+  <section class="section view" id="view-weather">
+    <div class="section-head">
+      <div class="section-label">תחזית</div>
+      <h2 class="section-title">מזג אוויר</h2>
+    </div>
+    <div class="weather-card">
+      <div class="weather-header">
+        <div>
+          <div class="weather-loc">ניו יורק · מנהטן</div>
+          <div class="weather-note">תחזית מבוססת ממוצעים היסטוריים ליוני · תתעדכן ככל שהטיול יתקרב</div>
+        </div>
+        <div class="weather-emoji-big">☀️</div>
+      </div>
+      <div class="weather-strip" id="weather-strip"></div>
+      <div class="weather-tips">
+        <span>👕 חולצה / שכבה קלה</span>
+        <span>☂️ מטרייה קומפקטית</span>
+        <span>🕶 משקפי שמש</span>
+        <span>🧴 קרם הגנה</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENCY -->
+  <section class="section view" id="view-currency">
+    <div class="section-head">
+      <div class="section-label">שער מטבע חי</div>
+      <h2 class="section-title">המרה NIS ↔ USD</h2>
+    </div>
+    <div class="currency-card">
+      <div class="currency-rate" id="currency-rate">
+        <span class="rate-label">טוען שער...</span>
+      </div>
+      <div class="currency-converter">
+        <div class="conv-row">
+          <input type="number" id="conv-ils" class="conv-input" placeholder="0" inputmode="decimal">
+          <span class="conv-unit">₪ שקלים</span>
+        </div>
+        <div class="conv-arrow">⇅</div>
+        <div class="conv-row">
+          <input type="number" id="conv-usd" class="conv-input" placeholder="0" inputmode="decimal">
+          <span class="conv-unit">$ דולרים</span>
+        </div>
+      </div>
+      <div class="currency-presets">
+        <div class="preset-label">מהיר:</div>
+        <button class="preset-btn" data-usd="10">$10</button>
+        <button class="preset-btn" data-usd="20">$20</button>
+        <button class="preset-btn" data-usd="50">$50</button>
+        <button class="preset-btn" data-usd="100">$100</button>
+        <button class="preset-btn" data-usd="200">$200</button>
+      </div>
+    </div>
+  </section>
 
   </div><!-- /tab-trip -->
 
   <!-- =================== MUNDIAL TAB CONTENT =================== -->
-  <div class="tab-content" id="tab-mundial">
+  <div class="tab-content tab-mundial-themed" id="tab-mundial">
+
+    <div class="mundial-banner">
+      <div class="mundial-banner-trophy">
+        <svg width="44" height="68" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 4px 8px rgba(201,138,24,0.5));">
+          <defs>
+            <linearGradient id="btg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff4b8"/>
+              <stop offset="25%" stop-color="#fcd76c"/>
+              <stop offset="55%" stop-color="#f9b234"/>
+              <stop offset="100%" stop-color="#a8740e"/>
+            </linearGradient>
+            <radialGradient id="bglobe" cx="0.35" cy="0.3" r="0.9">
+              <stop offset="0%" stop-color="#fff4b8"/>
+              <stop offset="40%" stop-color="#fcd76c"/>
+              <stop offset="80%" stop-color="#f9b234"/>
+              <stop offset="100%" stop-color="#8a5e0e"/>
+            </radialGradient>
+            <linearGradient id="bgreen" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1ea366"/>
+              <stop offset="100%" stop-color="#0d5a37"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="28" r="20" fill="url(#bglobe)"/>
+          <path d="M40 22 Q44 18 48 20 Q50 24 47 28 Q44 30 41 28 Q38 26 40 22 Z" fill="#8a5e0e" opacity="0.35"/>
+          <path d="M52 18 Q58 16 60 20 Q61 24 58 26 Q54 26 52 22 Z" fill="#8a5e0e" opacity="0.35"/>
+          <path d="M45 33 Q50 35 55 33 Q56 37 52 39 Q47 39 45 36 Z" fill="#8a5e0e" opacity="0.35"/>
+          <ellipse cx="42" cy="20" rx="6" ry="4" fill="#fff9d8" opacity="0.5"/>
+          <path d="M28 42 Q20 50 22 70 Q24 90 32 105 Q36 112 42 116 L42 50 Q38 44 28 42 Z" fill="url(#btg)"/>
+          <path d="M72 42 Q80 50 78 70 Q76 90 68 105 Q64 112 58 116 L58 50 Q62 44 72 42 Z" fill="url(#btg)"/>
+          <path d="M42 50 Q40 60 42 75 Q44 95 50 116 Q56 95 58 75 Q60 60 58 50 Z" fill="url(#btg)"/>
+          <path d="M30 50 Q26 60 28 80 Q30 95 35 105" stroke="#fff9d8" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M42 116 L58 116 L56 122 L44 122 Z" fill="url(#btg)"/>
+          <rect x="36" y="120" width="28" height="4" rx="1" fill="url(#btg)"/>
+          <path d="M34 124 L66 124 L65 132 L35 132 Z" fill="url(#bgreen)"/>
+          <rect x="33" y="131" width="34" height="4" rx="1" fill="url(#btg)"/>
+          <path d="M31 135 L69 135 L68 145 L32 145 Z" fill="url(#bgreen)"/>
+          <rect x="30" y="144" width="40" height="5" rx="1" fill="url(#btg)"/>
+        </svg>
+      </div>
+      <div class="mundial-banner-text">
+        <div class="mundial-banner-title">מונדיאל FIFA 2026</div>
+        <div class="mundial-banner-sub">🇺🇸 ארה"ב · 🇲🇽 מקסיקו · 🇨🇦 קנדה · 48 נבחרות · 104 משחקים</div>
+      </div>
+      <div class="mundial-banner-emoji">⚽</div>
+    </div>
 
     <!-- Next match countdown -->
     <section class="section">
@@ -2533,9 +3301,20 @@
       <div class="section-head">
         <div class="section-label">סגלי הנבחרות</div>
         <h2 class="section-title">קבוצות וסגלים</h2>
-        <p class="section-sub">סגלים סופיים יוכרזו רק ב-1 ביוני 2026 · כרגע מוצגים המאמנים והבסיס</p>
+        <p class="section-sub">לחץ על נבחרת כדי לראות את הסגל המלא מסודר לפי עמדות · סגלים סופיים יוכרזו ב-1.6.26</p>
       </div>
-      <div class="squads-list" id="squads-list"></div>
+      <div class="squads-container">
+        <div class="team-selector">
+          <div class="team-selector-label">בחר נבחרת:</div>
+          <div class="team-selector-groups" id="team-selector"></div>
+        </div>
+        <div id="squad-detail">
+          <div class="squad-no-selection">
+            <div class="squad-no-selection-icon">👆</div>
+            <div>בחר נבחרת מהרשימה למעלה</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Bracket view -->
@@ -2715,7 +3494,7 @@
   function toggle(headerEl) {
     headerEl.parentElement.classList.toggle('open');
   }
-  document.querySelector('.day').classList.add('open');
+  // Days no longer auto-open on page load - user clicks to expand
 
   // ============ MAIN TAB SWITCHER (Trip / Mundial) ============
   const mainTabs = document.querySelectorAll('.main-tab');
@@ -2753,6 +3532,7 @@
 
   // Team name → ISO country code mapping for flag URLs (flagcdn.com)
   const TEAM_FLAGS = {
+    'Algeria': 'dz',
     'Argentina': 'ar', 'Australia': 'au', 'Austria': 'at',
     'Belgium': 'be', 'Bosnia & Herzegovina': 'ba', 'Brazil': 'br',
     'Canada': 'ca', 'Cape Verde': 'cv', 'Colombia': 'co',
@@ -2774,6 +3554,7 @@
 
   // Hebrew team names
   const TEAM_HEBREW = {
+    'Algeria': 'אלג\'יריה',
     'Argentina': 'ארגנטינה', 'Australia': 'אוסטרליה', 'Austria': 'אוסטריה',
     'Belgium': 'בלגיה', 'Bosnia & Herzegovina': 'בוסניה', 'Brazil': 'ברזיל',
     'Canada': 'קנדה', 'Cape Verde': 'כף ורדה', 'Colombia': 'קולומביה',
@@ -2801,6 +3582,46 @@
 
   function teamHe(teamName) {
     return TEAM_HEBREW[teamName] || teamName;
+  }
+
+  // World Cup trophy SVG - the iconic FIFA trophy
+  function trophySvg(size = 'normal') {
+    const dim = size === 'big' ? 'width="64" height="100"' : size === 'small' ? 'width="18" height="28"' : 'width="28" height="44"';
+    return `<svg ${dim} class="trophy-inline" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(201,138,24,0.4));">
+      <defs>
+        <linearGradient id="tg${size}" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fff4b8"/>
+          <stop offset="25%" stop-color="#fcd76c"/>
+          <stop offset="55%" stop-color="#f9b234"/>
+          <stop offset="100%" stop-color="#a8740e"/>
+        </linearGradient>
+        <radialGradient id="globe${size}" cx="0.35" cy="0.3" r="0.9">
+          <stop offset="0%" stop-color="#fff4b8"/>
+          <stop offset="40%" stop-color="#fcd76c"/>
+          <stop offset="80%" stop-color="#f9b234"/>
+          <stop offset="100%" stop-color="#8a5e0e"/>
+        </radialGradient>
+        <linearGradient id="green${size}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1ea366"/>
+          <stop offset="100%" stop-color="#0d5a37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="28" r="20" fill="url(#globe${size})"/>
+      <path d="M40 22 Q44 18 48 20 Q50 24 47 28 Q44 30 41 28 Q38 26 40 22 Z" fill="#8a5e0e" opacity="0.35"/>
+      <path d="M52 18 Q58 16 60 20 Q61 24 58 26 Q54 26 52 22 Z" fill="#8a5e0e" opacity="0.35"/>
+      <path d="M45 33 Q50 35 55 33 Q56 37 52 39 Q47 39 45 36 Z" fill="#8a5e0e" opacity="0.35"/>
+      <ellipse cx="42" cy="20" rx="6" ry="4" fill="#fff9d8" opacity="0.5"/>
+      <path d="M28 42 Q20 50 22 70 Q24 90 32 105 Q36 112 42 116 L42 50 Q38 44 28 42 Z" fill="url(#tg${size})"/>
+      <path d="M72 42 Q80 50 78 70 Q76 90 68 105 Q64 112 58 116 L58 50 Q62 44 72 42 Z" fill="url(#tg${size})"/>
+      <path d="M42 50 Q40 60 42 75 Q44 95 50 116 Q56 95 58 75 Q60 60 58 50 Z" fill="url(#tg${size})"/>
+      <path d="M30 50 Q26 60 28 80 Q30 95 35 105" stroke="#fff9d8" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M42 116 L58 116 L56 122 L44 122 Z" fill="url(#tg${size})"/>
+      <rect x="36" y="120" width="28" height="4" rx="1" fill="url(#tg${size})"/>
+      <path d="M34 124 L66 124 L65 132 L35 132 Z" fill="url(#green${size})"/>
+      <rect x="33" y="131" width="34" height="4" rx="1" fill="url(#tg${size})"/>
+      <path d="M31 135 L69 135 L68 145 L32 145 Z" fill="url(#green${size})"/>
+      <rect x="30" y="144" width="40" height="5" rx="1" fill="url(#tg${size})"/>
+    </svg>`;
   }
 
   // Parse the "time UTC-X" format from openfootball into actual Date object
@@ -2865,61 +3686,154 @@
     }
   }
 
-  // ============ SQUADS DATA (manually maintained) ============
-  // Coaches sourced from Wikipedia / public press as of pre-tournament
+  // ============ SQUADS DATA - position-based (May 2026 announced squads) ============
+  // For teams with announced squads (France, Senegal, Portugal, etc.) - full lineup by position
+  // For others - known stars + note that final squad TBD
   const SQUADS_DATA = {
-    'Mexico': { coach: 'חאבייר אגיירה', stars: ['רפא מארקס (אגדה)', 'אדסון אלברס', 'הירבינג לוסאנו', 'סנטיאגו חימנס'], appearances: '18', best: '1/4 גמר (1970, 1986)' },
-    'South Africa': { coach: 'הוגו ברוס', stars: ['רונווין וויליאמס', 'תמסנקה מקולה'], appearances: '4', best: 'שלב הבתים' },
-    'South Korea': { coach: 'הונג מיונג-בו', stars: ['סון הונג-מין', 'לי קאנג-אין', 'קים מין-ג\'ה'], appearances: '11', best: 'חצי גמר (2002)' },
-    'Czech Republic': { coach: 'איוון האשק', stars: ['פטר שוורצברק', 'פטריק שיק'], appearances: '10', best: 'גמר (1934, 1962)' },
-    'Canada': { coach: 'ג\'סי מארש', stars: ['אלפונסו דייוויס', 'ג\'ונתן דייוויד', 'סטיבן אוסטאקיו'], appearances: '3', best: 'שלב הבתים' },
-    'Bosnia & Herzegovina': { coach: 'סרגי בריבייני', stars: ['אדין ג\'קו', 'מיראליים פיאניץ\'', 'אסמיר באג\'יץ\''], appearances: '2', best: 'שלב הבתים' },
-    'Qatar': { coach: 'בארטולומה מארקיז', stars: ['אכרם אפיף', 'אלמועיז עלי'], appearances: '2', best: 'שלב הבתים' },
-    'Switzerland': { coach: 'מורת אקין', stars: ['גרניט ג\'אקה', 'מנואל אקאנג\'י', 'ברל אמבולו'], appearances: '13', best: '1/4 גמר (1934, 1938, 1954)' },
-    'Brazil': { coach: 'קרלו אנצ\'לוטי', stars: ['ויניסיוס ג\'וניור', 'רודריגו', 'אנדריק', 'רפיניה', 'אליסון', 'מרקיניוס'], appearances: '23', best: 'אלוף 5 פעמים (1958, 1962, 1970, 1994, 2002)' },
-    'Morocco': { coach: 'וואליד רגראגי', stars: ['אשרף חכימי', 'איוב אל כעבי', 'ביראם דיאז', 'סופיאן בופאל'], appearances: '7', best: 'חצי גמר (2022)' },
-    'Haiti': { coach: 'גבריאל קלמן', stars: ['דושאן צ\'ארלס', 'ג\'ון בוסטוק'], appearances: '2', best: 'שלב הבתים' },
-    'Scotland': { coach: 'סטיב קלארק', stars: ['אנדרו רוברטסון', 'סקוט מקטומיני', 'ג\'ון מקגין'], appearances: '9', best: 'שלב הבתים' },
-    'USA': { coach: 'מאוריסיו פוצ\'טינו', stars: ['כריסטיאן פוליסיץ\'', 'טיילר אדמס', 'יונס מוסה', 'ג\'יו רנה'], appearances: '12', best: 'חצי גמר (1930)' },
-    'Paraguay': { coach: 'גוסטבו אלפארו', stars: ['מיגל אלמירון', 'אנטוניו סנאברה'], appearances: '9', best: '1/4 גמר (2010)' },
-    'Australia': { coach: 'טוני פופוביץ\'', stars: ['מתיו ראיין', 'הארי סורטר', 'ג\'קסון אירווין'], appearances: '7', best: '1/8 גמר (2006, 2022)' },
-    'Turkey': { coach: 'וינצ\'נצו מונטלה', stars: ['ארדה גילר', 'הקאן צ\'אלהאנואולו', 'קנן יילדיז'], appearances: '4', best: 'חצי גמר (2002)' },
-    'Germany': { coach: 'יוליאן נאגלסמן', stars: ['ג\'מאל מוסיאלה', 'פלוריאן וירץ\'', 'קאי האברץ\'', 'אנטוניו רודיגר', 'יושוע קימיך'], appearances: '21', best: 'אלוף 4 פעמים (1954, 1974, 1990, 2014)' },
-    'Curaçao': { coach: 'דיק אדבוקאט', stars: ['ליאנדרו באקונה', 'ז\'ורג\'ינו וויינאלדום'], appearances: '1', best: 'בכורה!' },
-    'Ivory Coast': { coach: 'אמרס פאה', stars: ['סבסטיאן אלר', 'פרנק קסיה', 'ניקולא פפה'], appearances: '4', best: 'שלב הבתים' },
-    'Ecuador': { coach: 'סבסטיאן בקה', stars: ['מויסס קייסדו', 'אנר ואלנסיה', 'פיירו הינקאפיה'], appearances: '5', best: '1/8 גמר (2006)' },
-    'Netherlands': { coach: 'רונאלד קומאן', stars: ['וירג\'יל ואן דייק', 'פרנקי דה יונג', 'מנסיאן דה ליחט', 'קודי חאקפו'], appearances: '12', best: 'גמר (1974, 1978, 2010)' },
-    'Japan': { coach: 'האג\'ימה מוריאסו', stars: ['טאקפומי מינאמינו', 'קאורו מיטומה', 'ריצו דואן', 'דאיצן מאדה'], appearances: '8', best: '1/8 גמר (2002, 2010, 2018, 2022)' },
-    'Sweden': { coach: 'יון דאל טומאסון', stars: ['אלכסנדר איסאק', 'ויקטור ג\'יוקרש', 'דייאן קולושבסקי'], appearances: '13', best: 'גמר (1958)' },
-    'Tunisia': { coach: 'סאמי טריבלסי', stars: ['אנייס ססליטי', 'חאלם בן רומדאן'], appearances: '7', best: 'שלב הבתים' },
-    'Belgium': { coach: 'רודי גארסיה', stars: ['קווין דה ברוינה', 'רומלו לוקאקו', 'ג\'רמי דוקו', 'לואיש אופנדה'], appearances: '14', best: 'חצי גמר (1986, 2018)' },
-    'Egypt': { coach: 'הוסאם חסן', stars: ['מוחמד סלאח', 'מוסטפא מוחמד', 'עמר מרמוש'], appearances: '4', best: 'שלב הבתים' },
-    'Iran': { coach: 'אמיר גאלנואי', stars: ['מהדי טארמי', 'סארדאר אזמון', 'אליראזה ג\'הנבכש'], appearances: '7', best: 'שלב הבתים' },
-    'New Zealand': { coach: 'דארן בייזלי', stars: ['כריס ווד', 'ליבריטו קאצ\'אטורה'], appearances: '3', best: 'שלב הבתים' },
-    'Spain': { coach: 'לואיס דה לה פואנטה', stars: ['למינה יאמאל', 'ניקו וויליאמס', 'פדרי', 'רודרי', 'אלוואר מוראטה'], appearances: '17', best: 'אלוף (2010)' },
-    'Cape Verde': { coach: "ג'ורג'יוס דוניס", stars: ['ראיין מנדס', 'מטיל ג\'ייאו'], appearances: '1', best: 'בכורה!' },
-    'Saudi Arabia': { coach: 'הרב רנאר', stars: ['סאלם אל-דאוסארי', 'מוחמד אל-אובאיד'], appearances: '7', best: '1/8 גמר (1994)' },
-    'Uruguay': { coach: 'מרסלו בייסה', stars: ['פדריקו ואלברדה', 'דרווין נונייז', 'רודריגו בנטנקור'], appearances: '15', best: 'אלוף (1930, 1950)' },
-    'France': { coach: "דידייה דשאן", stars: ['קיליאן אמבפה', 'אנטואן גריזמן', 'אורליין צ\'ואמני', 'אדוארדו קמאווינגה', 'תאו ארנאנדס'], appearances: '17', best: 'אלוף (1998, 2018)' },
-    'Senegal': { coach: 'פאפה תיאו', stars: ['סאדיו מאנה', 'אדואר מנדי', 'אילימן נדיאיי', 'ניקולא ג\'אקסון'], appearances: '4', best: '1/4 גמר (2002)' },
-    'Iraq': { coach: 'חסיים שאקיר', stars: ['איימן חוסיין', 'עלי אל חמדאני'], appearances: '2', best: 'שלב הבתים' },
-    'Norway': { coach: "סטאלה סולבאקן", stars: ['ארלינג הולנד', 'מרטין אודגארד', 'אלכסנדר סורלוט'], appearances: '4', best: '1/8 גמר (1998)' },
-    'Argentina': { coach: 'ליונל סקלוני', stars: ['ליונל מסי', 'לאוטרו מרטינס', 'אנצו פרננדס', 'אמיליאנו מרטינס', 'נחואל מולינה'], appearances: '19', best: 'אלוף (1978, 1986, 2022)' },
-    'Algeria': { coach: 'ולאדימיר פטקוביץ\'', stars: ['ריאד מאהרז', 'איסמעיל בנאסר', 'יוסף בלאילי'], appearances: '5', best: '1/8 גמר (2014)' },
-    'Austria': { coach: 'ראלף ראנגניק', stars: ['דוד אלאבא', 'מרצל סבייצר', 'כריסטוף באומגרטנר'], appearances: '8', best: 'מקום 3 (1954)' },
-    'Jordan': { coach: 'ג\'מאל סאלם', stars: ['מוסא אל-טאמארי', 'יזן אל-נאימאת'], appearances: '1', best: 'בכורה!' },
-    'Portugal': { coach: 'רוברטו מרטינס', stars: ['כריסטיאנו רונאלדו', 'ברונו פרננדס', 'רובן דיאש', 'בראדלי בארקולה'], appearances: '9', best: 'מקום 3 (1966)' },
-    'DR Congo': { coach: 'סבסטיאן דסבר', stars: ['סדריק באקאמבו', 'יואב באמבא'], appearances: '3', best: '1/8 גמר (1974)' },
-    'Uzbekistan': { coach: 'טימור קאפאדזה', stars: ['אבדומליק רחמטוליאב', 'אלי טורצ\'אנוב'], appearances: '1', best: 'בכורה!' },
-    'Colombia': { coach: 'נסטור לורנצו', stars: ['חאמס רודריגז', 'לואיס דיאז', 'דייבסון סאנצ\'ז', 'ראדאמל פאלקאו'], appearances: '7', best: '1/4 גמר (2014)' },
-    'England': { coach: 'תומאס טוכל', stars: ['הארי קיין', 'ג\'וד בלינגהאם', 'בוקאיו סאקה', 'דקלן רייס', 'פיל פודן'], appearances: '17', best: 'אלוף (1966)' },
-    'Croatia': { coach: 'זלאטקו דאליץ\'', stars: ['לוקה מודריץ\'', 'מאטיו קובאצ\'יץ\'', 'יושקו גוורדיול'], appearances: '7', best: 'גמר (2018)' },
-    'Ghana': { coach: 'אוטו אדו', stars: ['מוחמד קודוס', 'ג\'ורדאן איוו', 'אנטואן סמניו'], appearances: '5', best: '1/4 גמר (2010)' },
-    'Panama': { coach: 'תומאס כריסטיאנסן', stars: ['אדריאן מארטינז', 'איסמעיל דיאז'], appearances: '2', best: 'שלב הבתים' }
+    'France': {
+      coach: 'דידייה דשאן', captain: 'קיליאן אמבפה', appearances: 17, best: 'אלוף 1998, 2018',
+      announced: true,
+      gk: [{n: 'בריס סמבא', num: 1}, {n: 'מייק מניאן', num: 16}, {n: 'לוקא שבלייה', num: 23}],
+      def: [{n: 'מאלו גוסטו', num: 2}, {n: 'לוקא דין', num: 3}, {n: 'ויליאם סאליבה', num: 4}, {n: 'דאיו אופאמקאנו', num: 5}, {n: 'איברהימה קונאטה', num: 13}, {n: 'תאו ארנאנדס', num: 22}, {n: 'ז\'ול קונדה', num: 25}],
+      mid: [{n: 'מאנו קונה', num: 6}, {n: 'אורליאן צ\'ואמני', num: 8}, {n: 'אדריאן ראבייה', num: 14}, {n: 'נ\'גולו קאנטה', num: 17}, {n: 'וורן זאיר-אמרי', num: 18}, {n: 'חוסם אעואר', num: 20}],
+      fwd: [{n: 'עוסמאן דמבלה', num: 7}, {n: 'מרקוס תוראם', num: 9}, {n: 'קיליאן אמבפה', num: 10, captain: true}, {n: 'מייקל אוליז', num: 11}, {n: 'בראדלי בארקולה', num: 12}, {n: 'דזירה דואה', num: 15}, {n: 'ז\'אן-פיליפ מאטטה', num: 19}, {n: 'ראיין שרקי', num: 21}, {n: 'מאניס אקליוש', num: 24}]
+    },
+    'Senegal': {
+      coach: 'פאפה תיאו', captain: 'קלידו קולובאלי', appearances: 4, best: 'רבע גמר 2002',
+      announced: true,
+      gk: [{n: 'אדוארד מנדי'}, {n: 'מורי דיאו'}, {n: 'יבאן דיוף'}],
+      def: [{n: 'קלידו קולובאלי', captain: true}, {n: 'איסמעיל ז\'אקובס'}, {n: 'אל-חאג\' מאליק דיוף'}, {n: 'קרפן דיאטה'}, {n: 'אנטואן מנדי'}, {n: 'מוסה ניאחאטה'}, {n: 'מוסטפא מבאו'}, {n: 'עבדולאי סק'}, {n: 'איליי קמארה'}, {n: 'מאמאדו סאר'}],
+      mid: [{n: 'חביב דיארה'}, {n: 'פאפה מאטאר סאר'}, {n: 'פאתה סיס'}, {n: 'פאפה גואיה'}, {n: 'לאמין קמארה'}, {n: 'בארה סאפוקו נדיאיי'}, {n: 'אידריסה גואיה'}],
+      fwd: [{n: 'סאדיו מאנה'}, {n: 'איסמעילה סאר'}, {n: 'אילימאן נדיאיי'}, {n: 'אסאן דיאו'}, {n: 'איברהים מבאיי'}, {n: 'ניקולא ג\'קסון'}, {n: 'באמבה דיינג'}, {n: 'שריף נדיאיי'}]
+    },
+    'Argentina': {
+      coach: 'ליונל סקלוני', captain: 'ליונל מסי', appearances: 19, best: 'אלוף 1978, 1986, 2022',
+      announced: false,
+      gk: [{n: 'אמיליאנו מרטינס'}, {n: 'חרונימו רולי'}, {n: 'ולטר בנייטס'}],
+      def: [{n: 'נחואל מולינה'}, {n: 'כריסטיאן רומרו'}, {n: 'ניקולס אוטמנדי'}, {n: 'ניקולס טאליאפיקו'}, {n: 'מרקוס אקוניה'}, {n: 'נחואל מולינה'}],
+      mid: [{n: 'רודריגו דה פאול'}, {n: 'אנצו פרננדס'}, {n: 'אלכסיס מק אליסטר'}, {n: 'לאנדרו פארדס'}, {n: 'ג\'ובאני לו צלסו'}, {n: 'אקסל ויירס'}],
+      fwd: [{n: 'ליונל מסי', num: 10, captain: true}, {n: 'לאוטרו מרטינס'}, {n: 'חוליאן אלוורס'}, {n: 'אנחל די מריה'}, {n: 'אנחל קוראיה'}, {n: 'ניקו גונסאלס'}]
+    },
+    'Brazil': {
+      coach: 'קרלו אנצ\'לוטי', captain: 'מרקיניוס', appearances: 23, best: 'אלוף ×5',
+      announced: false,
+      gk: [{n: 'אליסון בקר'}, {n: 'אדרסון'}, {n: 'בנטו'}],
+      def: [{n: 'דניאל אלבס'}, {n: 'מרקיניוס', captain: true}, {n: 'גבריאל מגליאש'}, {n: 'איידר מיליטאו'}, {n: 'דנילו'}, {n: 'ונדרסון'}, {n: 'ארנה'}],
+      mid: [{n: 'קזמירו'}, {n: 'ברונו גימראש'}, {n: 'לוקאס פאקטה'}, {n: 'אנדריאס פריירה'}, {n: 'ז\'ואלינטון'}, {n: 'ראיין גרבש'}],
+      fwd: [{n: 'ויניסיוס ז\'וניור'}, {n: 'רודריגו'}, {n: 'רפיניה'}, {n: 'אנדריק'}, {n: 'גבריאל ז\'זוס'}, {n: 'מתאוס קוניה'}, {n: 'גבריאל מרטינלי'}]
+    },
+    'Portugal': {
+      coach: 'רוברטו מרטינס', captain: 'כריסטיאנו רונאלדו', appearances: 9, best: 'מקום 3 (1966)',
+      announced: false,
+      gk: [{n: 'דיוגו קושטה'}, {n: 'רוי פטריסיו'}, {n: 'ז\'וזה סא'}],
+      def: [{n: 'ז\'ואאו קנסלו'}, {n: 'רובן דיאש'}, {n: 'פפה'}, {n: 'גונסאלו אינאסיו'}, {n: 'נונו מנדס'}, {n: 'דיוגו דאלוט'}, {n: 'אנטוניו סילבה'}],
+      mid: [{n: 'ברונו פרננדס'}, {n: 'ויטיניה'}, {n: 'ז\'ואאו פאליניה'}, {n: 'רובן נווש'}, {n: 'ברנרדו סילבה'}, {n: 'אוטאביו'}],
+      fwd: [{n: 'כריסטיאנו רונאלדו', num: 7, captain: true}, {n: 'רפאל לאו'}, {n: 'ז\'ואאו פליקס'}, {n: 'גונסאלו ראמוס'}, {n: 'דיוגו ז\'וטה'}, {n: 'פדרו נטו'}]
+    },
+    'Spain': {
+      coach: 'לואיס דה לה פואנטה', captain: 'אלוורו מוראטה', appearances: 17, best: 'אלוף (2010)',
+      announced: false,
+      gk: [{n: 'אונאי סימון'}, {n: 'דוד ראיה'}, {n: 'אלכס רמירו'}],
+      def: [{n: 'דני קרבחאל'}, {n: 'רובן לה נורמאן'}, {n: 'פאו קוברסי'}, {n: 'איימריק לפורט'}, {n: 'מארק קוקורייה'}, {n: 'אלחנדרו גרינדו'}, {n: 'דני ויוואס'}],
+      mid: [{n: 'רודרי'}, {n: 'פדרי'}, {n: 'גאבי'}, {n: 'מרטין סוביימנדי'}, {n: 'פאו טורס'}, {n: 'פבלו בארדיוס'}, {n: 'דני אולמו'}],
+      fwd: [{n: 'אלוורו מוראטה', captain: true}, {n: 'לאמין ימאל'}, {n: 'ניקו ויליאמס'}, {n: 'פראן טורס'}, {n: 'מיקל אויארסבאל'}, {n: 'יאגו אספאס'}]
+    },
+    'England': {
+      coach: 'תומאס טוכל', captain: 'הארי קיין', appearances: 17, best: 'אלוף (1966)',
+      announced: false,
+      gk: [{n: 'ג\'ורדן פיקפורד'}, {n: 'אהרון רמסדייל'}, {n: 'דין הנדרסון'}],
+      def: [{n: 'קייל ווקר'}, {n: 'ג\'ון סטונס'}, {n: 'הארי מגווייר'}, {n: 'מארק גוהי'}, {n: 'לוק שו'}, {n: 'בן צ\'ילוול'}, {n: 'טרנט אלכסנדר-ארנולד'}, {n: 'אזרי קונסה'}],
+      mid: [{n: 'דקלן רייס'}, {n: 'ג\'וד בלינגהאם'}, {n: 'אדם וורתון'}, {n: 'קונור גלאגר'}, {n: 'קובי מיינו'}, {n: 'אנתוני גורדון'}],
+      fwd: [{n: 'הארי קיין', captain: true}, {n: 'בוקאיו סאקה'}, {n: 'פיל פודן'}, {n: 'קול פאלמר'}, {n: 'מרקוס ראשפורד'}, {n: 'אולי ווטקינס'}, {n: 'איוון טוני'}]
+    },
+    'Germany': {
+      coach: 'יוליאן נאגלסמן', captain: 'יושוע קימיך', appearances: 21, best: 'אלוף ×4',
+      announced: false,
+      gk: [{n: 'מנואל נוייר'}, {n: 'מארק-אנדרה טר שטגן'}, {n: 'אוליבר באומן'}],
+      def: [{n: 'יושוע קימיך', captain: true}, {n: 'אנטוניו רודיגר'}, {n: 'יונאתן טאה'}, {n: 'ניקלאס זילה'}, {n: 'דייוויד ראום'}, {n: 'בנימין הנריקס'}, {n: 'ולדמר אנטון'}],
+      mid: [{n: 'טוני קרוס'}, {n: 'אילקאי גינדואן'}, {n: 'פסקאל גרוס'}, {n: 'רוברט אנדריך'}, {n: 'אלכסנדר פבלוביץ\''}, {n: 'אנג\'לו שטילר'}],
+      fwd: [{n: 'ג\'מאל מוסיאלה'}, {n: 'פלוריאן וירץ\''}, {n: 'קאי הברץ'}, {n: 'לרוי סאנה'}, {n: 'דניס אונדאב'}, {n: 'מקסימיליאן ביר'}, {n: 'ניקלאס פולקרוג'}]
+    },
+    'Netherlands': {
+      coach: 'רונאלד קומאן', captain: 'וירג\'יל ואן דייק', appearances: 12, best: 'גמר (1974, 78, 2010)',
+      announced: false,
+      gk: [{n: 'ברט ורברוגן'}, {n: 'מארק פלקן'}, {n: 'יוסטין באיילו'}],
+      def: [{n: 'וירג\'יל ואן דייק', captain: true}, {n: 'מתאיס דה ליכט'}, {n: 'נתן אקה'}, {n: 'סטפן דה פראיי'}, {n: 'דנזל דומפריס'}, {n: 'דייאן מאלצייה'}, {n: 'מיקי ואן דה ון'}, {n: 'יורין טימבר'}],
+      mid: [{n: 'פרנקי דה יונג'}, {n: 'תיון קופמיינרס'}, {n: 'חאווי וועירמן'}, {n: 'ז\'ורז\'יניו ויינאלדום'}, {n: 'מארטן דה רון'}],
+      fwd: [{n: 'ממפיס דפאי'}, {n: 'קודי גאקפו'}, {n: 'דונייל מאלן'}, {n: 'חאווי טימבר'}, {n: 'בריאן בראבי'}, {n: 'איאן מאצן'}]
+    },
+    'Italy': {
+      coach: 'לוצ\'אנו ספאלטי', captain: 'ג\'ובאני די לורנצו', appearances: 18, best: 'אלוף ×4',
+      announced: false,
+      // NOTE: Italy not in our tournament; this entry won't display
+      gk: [], def: [], mid: [], fwd: []
+    },
+    'USA': {
+      coach: 'מאוריסיו פוצ\'טינו', captain: 'טיילר אדמס', appearances: 12, best: 'חצי גמר (1930)',
+      announced: false,
+      gk: [{n: 'מאט טרנר'}, {n: 'אתיאן הורביית'}, {n: 'פטריק שולטה'}],
+      def: [{n: 'סרחיניו דסט'}, {n: 'אנטוני רובינסון'}, {n: 'מארק מקנזי'}, {n: 'כריס ריצ\'ארדס'}, {n: 'ווקר זימרמן'}, {n: 'טים ריים'}],
+      mid: [{n: 'טיילר אדמס', captain: true}, {n: 'יונס מוסה'}, {n: 'ויסטון מקנני'}, {n: 'לוקה דה לה תורה'}, {n: 'מאליק טילמן'}, {n: 'ג\'ק מקגלינצ\'י'}],
+      fwd: [{n: 'כריסטיאן פוליסיץ\''}, {n: 'ג\'יו רנה'}, {n: 'טים וויאה'}, {n: 'פוליאון בלהה'}, {n: 'ריקרדו פפי'}, {n: 'יוסף מארטינס'}]
+    },
+    'Mexico': {
+      coach: 'חאבייר אגיירה', captain: 'אדסון אלברס', appearances: 18, best: 'רבע גמר (1970, 1986)',
+      announced: false,
+      gk: [{n: 'גילרמו אוצ\'ואה'}, {n: 'לואיס מאלאגון'}, {n: 'קרלוס אצבדו'}],
+      def: [{n: 'סזאר מונטס'}, {n: 'יוז קסאר'}, {n: 'חוליו צסאר דומינגז'}, {n: 'חורחה סאנצ\'ז'}, {n: 'ג\'סוס גליארדו'}, {n: 'קווין אלוורז'}],
+      mid: [{n: 'אדסון אלברס', captain: true}, {n: 'לואיס צ\'אבס'}, {n: 'אורבליס פינדה'}, {n: 'אריק לירה'}, {n: 'אוסקר חימנס'}, {n: 'מארסל רוּיז'}],
+      fwd: [{n: 'הירבינג לוסאנו'}, {n: 'סנטיאגו חימנס'}, {n: 'הנרי מארטין'}, {n: 'אלכסיס וגה'}, {n: 'אורברטו פינדה'}, {n: 'רוברטו אלברדו'}]
+    },
+    'Canada': {
+      coach: 'ג\'סי מארש', captain: 'אטיבה האצ\'ינסון', appearances: 4, best: 'שלב הבתים',
+      announced: false,
+      gk: [{n: 'דייאן סן-ז\'אן'}, {n: 'מקסים קרפנטייה'}, {n: 'תומאס האסל'}],
+      def: [{n: 'אלפונסו דייוויס'}, {n: 'מויסי בומבי'}, {n: 'דרק קורנליוס'}, {n: 'סטיבן וויטו'}, {n: 'אלסטר ג\'ונסטון'}, {n: 'ריצ\'י לאריה'}],
+      mid: [{n: 'סטיבן אוסטאקיו'}, {n: 'איסמעיל קונה'}, {n: 'מאתיאו צ\'וקואני'}, {n: 'יוניליאן בויי'}, {n: 'אטיבה האצ\'ינסון', captain: true}],
+      fwd: [{n: 'ג\'ונתן דייוויד'}, {n: 'טאהון בוקנן'}, {n: 'סיריל לארין'}, {n: 'ג\'ייקוב שאפלבורג'}, {n: 'תאו קוריוסטה'}, {n: 'איקה אוקאקה'}]
+    },
+    'South Africa': { coach: 'הוגו ברוס', captain: 'רונווין וויליאמס', appearances: 4, best: 'שלב הבתים', announced: false, stars: ['רונווין וויליאמס', 'תמסנקה מקולה', 'פרסי טאו', 'ראלאני בייסון', 'תבוקסי קלאסה'] },
+    'South Korea': { coach: 'הונג מיונג-בו', captain: 'סון הונג-מין', appearances: 11, best: 'חצי גמר (2002)', announced: false, stars: ['סון הונג-מין', 'לי קאנג-אין', 'קים מין-ג\'ה', 'הוונג הי-צ\'אן', 'ג\'ו הוואן-אין'] },
+    'Czech Republic': { coach: 'איוון האשק', captain: 'תומאש סוצ\'ק', appearances: 10, best: 'גמר (1934, 1962)', announced: false, stars: ['תומאש סוצ\'ק', 'פטר שיק', 'אדם הלוז\'ק', 'דייוויד יורש'] },
+    'Bosnia & Herzegovina': { coach: 'סרז\'יי ברביץ\'', captain: 'אדין ז\'קו', appearances: 2, best: 'שלב הבתים', announced: false, stars: ['אדין ז\'קו', 'מירלאם פיאניץ\'', 'אסמיר באג\'יץ\'', 'אדין וישצ\'ה'] },
+    'Qatar': { coach: 'בארטולומה מארקיז', captain: 'חסן אל-היידוס', appearances: 2, best: 'שלב הבתים', announced: false, stars: ['אכרם עפיף', 'אלמועיז עלי', 'אסם מאדיבו', 'חסן אל-היידוס'] },
+    'Switzerland': { coach: 'מורת אקין', captain: 'גרניט ז\'אקה', appearances: 13, best: 'רבע גמר', announced: false, stars: ['גרניט ז\'אקה', 'מנואל אקאנג\'י', 'בריל אמבולו', 'דן נדואיה', 'יאן זומר'] },
+    'Morocco': { coach: 'וליד רגראגי', captain: 'אשרף חכימי', appearances: 7, best: 'חצי גמר (2022)', announced: false, stars: ['אשרף חכימי', 'איוב אל כעבי', 'בראהים דיאז', 'סופיאן בופאל', 'יסין בונו'] },
+    'Haiti': { coach: 'סבסטיאן מיגנה', captain: 'דושאן צ\'ארלס', appearances: 2, best: 'שלב הבתים', announced: false, stars: ['דושאן צ\'ארלס', 'דניאל פיו', 'פרנה פייר'] },
+    'Scotland': { coach: 'סטיב קלארק', captain: 'אנדרו רוברטסון', appearances: 9, best: 'שלב הבתים', announced: false, stars: ['אנדרו רוברטסון', 'סקוט מקטומיני', 'ג\'ון מקגין', 'בן דואק'] },
+    'Paraguay': { coach: 'גוסטבו אלפארו', captain: 'גוסטבו גומס', appearances: 9, best: 'רבע גמר (2010)', announced: false, stars: ['מיגל אלמירון', 'אנטוניו סנאברה', 'גוסטבו גומס', 'אומאר אלדרטה'] },
+    'Australia': { coach: 'טוני פופוביץ\'', captain: 'מתיו ראיין', appearances: 7, best: '1/8 גמר', announced: false, stars: ['מתיו ראיין', 'הארי סורטר', 'ג\'קסון אירווין', 'מארטין בויל'] },
+    'Turkey': { coach: 'וינצ\'נצו מונטלה', captain: 'הקאן צ\'אלהאנואולו', appearances: 4, best: 'חצי גמר (2002)', announced: false, stars: ['ארדה גילר', 'הקאן צ\'אלהאנואולו', 'קנן יילדיז', 'מרט גינוק'] },
+    'Curaçao': { coach: 'דיק אדבוקאט', captain: 'ליאנדרו באקונה', appearances: 1, best: 'בכורה!', announced: false, stars: ['ליאנדרו באקונה', 'תאהית\' צ\'ונג', 'יורן רימצמה'] },
+    'Ivory Coast': { coach: 'אמרס פאה', captain: 'סרז\' אוריאר', appearances: 4, best: 'שלב הבתים', announced: false, stars: ['סבסטיאן אלר', 'פרנק קסיה', 'ניקולא פפה', 'סרז\' אוריאר'] },
+    'Ecuador': { coach: 'סבסטיאן בקה', captain: 'אנר ואלנסיה', appearances: 5, best: '1/8 גמר', announced: false, stars: ['מויסס קייסדו', 'אנר ואלנסיה', 'פיירו הינקאפיה', 'גונסאלו פלאטה'] },
+    'Japan': { coach: 'האג\'ימה מוריאסו', captain: 'וואטארו אנדו', appearances: 8, best: '1/8 גמר ×4', announced: false, stars: ['קאורו מיטומה', 'ריצו דואן', 'וואטארו אנדו', 'דאיצן מאדה', 'טקפומי מינמינו'] },
+    'Sweden': { coach: 'יון דאל טומאסון', captain: 'ויקטור לינדלוף', appearances: 13, best: 'גמר (1958)', announced: false, stars: ['אלכסנדר איסאק', 'ויקטור יוקרש', 'דייאן קולושבסקי', 'ויקטור לינדלוף'] },
+    'Tunisia': { coach: 'סאמי טריבלסי', captain: 'יוסף משאני', appearances: 7, best: 'שלב הבתים', announced: false, stars: ['אנייס ססליטי', 'חאלם בן רומדאן', 'יוסף משאני'] },
+    'Belgium': { coach: 'רודי גארסיה', captain: 'קווין דה ברוינה', appearances: 14, best: 'חצי גמר (2018)', announced: false, stars: ['קווין דה ברוינה', 'רומלו לוקאקו', 'ג\'רמי דוקו', 'לואיס אופנדה', 'תיבו קורטואה'] },
+    'Egypt': { coach: 'הוסאם חסן', captain: 'מוחמד סלאח', appearances: 4, best: 'שלב הבתים', announced: false, stars: ['מוחמד סלאח', 'מוסטפא מוחמד', 'עמר מרמוש', 'תריזגה חסן'] },
+    'Iran': { coach: 'אמיר גאלנואי', captain: 'מהדי טארמי', appearances: 7, best: 'שלב הבתים', announced: false, stars: ['מהדי טארמי', 'סרדאר אזמון', 'עליראזה ג\'הנבאחש', 'מהדי קייאני'] },
+    'New Zealand': { coach: 'דארן בייזלי', captain: 'כריס ווד', appearances: 3, best: 'שלב הבתים', announced: false, stars: ['כריס ווד', 'ליבריטו קאצ\'אטורה', 'בן ויין-בריישר'] },
+    'Cape Verde': { coach: 'ביבי נטו (Bubista)', captain: 'ראיין מנדס', appearances: 1, best: 'בכורה!', announced: false, stars: ['ראיין מנדס', 'מטיל ג\'ייאו', 'דיילון לוונבק', 'ג\'מירו מונטיירו'] },
+    'Saudi Arabia': { coach: 'הרב רנאר', captain: 'סאלם אל-דאוסארי', appearances: 7, best: '1/8 גמר (1994)', announced: false, stars: ['סאלם אל-דאוסארי', 'מוחמד אל-אוויד', 'פיראס אל-בוריקאן'] },
+    'Uruguay': { coach: 'מרסלו ביילסה', captain: 'פדריקו ואלברדה', appearances: 15, best: 'אלוף (1930, 1950)', announced: false, stars: ['פדריקו ואלברדה', 'דרווין נונייז', 'רודריגו בנטנקור', 'מנואל אוגרטה'] },
+    'Iraq': { coach: 'חסיים שאקיר', captain: 'איימן חוסיין', appearances: 2, best: 'שלב הבתים', announced: false, stars: ['איימן חוסיין', 'עלי אל חמדאני', 'מרצ\'נד עלי', 'הוסיין עלי'] },
+    'Norway': { coach: 'סטאלה סולבאקן', captain: 'מרטין אודגארד', appearances: 4, best: '1/8 גמר (1998)', announced: false, stars: ['ארלינג הולנד', 'מרטין אודגארד', 'אלכסנדר סורלות', 'אנטוניו נוסה'] },
+    'Algeria': { coach: 'ולדימיר פטקוביץ\'', captain: 'ריאד מהרז', appearances: 5, best: '1/8 גמר (2014)', announced: false, stars: ['ריאד מהרז', 'איסמעיל בנאסר', 'יוסף בלאילי', 'אמין גואירי'] },
+    'Austria': { coach: 'ראלף ראנגניק', captain: 'דוד אלאבא', appearances: 8, best: 'מקום 3 (1954)', announced: false, stars: ['דוד אלאבא', 'מרסל סבייצר', 'כריסטוף באומגרטנר', 'קונרד לימר'] },
+    'Jordan': { coach: 'ג\'מאל סאלם', captain: 'מוסא אל-טאמארי', appearances: 1, best: 'בכורה!', announced: false, stars: ['מוסא אל-טאמארי', 'יזן אל-נאימאת', 'נור אל-רוואבדה'] },
+    'DR Congo': { coach: 'סבסטיאן דסבר', captain: 'צ\'אנצ\'ל מבמבה', appearances: 3, best: '1/8 גמר (1974)', announced: false, stars: ['סדריק באקאמבו', 'יואב באמבא', 'צ\'אנצ\'ל מבמבה', 'מירוס תייאו'] },
+    'Uzbekistan': { coach: 'טימור קאפאדזה', captain: 'אלי טורצ\'אנוב', appearances: 1, best: 'בכורה!', announced: false, stars: ['אבדומליק רחמטוליאב', 'אלי טורצ\'אנוב', 'אבדוקודיר חוסאנוב'] },
+    'Colombia': { coach: 'נסטור לורנצו', captain: 'חאמס רודריגז', appearances: 7, best: 'רבע גמר (2014)', announced: false, stars: ['חאמס רודריגז', 'לואיס דיאז', 'דייבסון סאנצ\'ז', 'ראדאמל פאלקאו', 'יון לרמה'] },
+    'Croatia': { coach: 'זלאטקו דאליץ\'', captain: 'לוקה מודריץ\'', appearances: 7, best: 'גמר (2018)', announced: false, stars: ['לוקה מודריץ\'', 'מתאו קובאצ\'יץ\'', 'יוסקו גוורדיול', 'אנדריי קראמאריץ\''] },
+    'Ghana': { coach: 'אוטו אדו', captain: 'תומאס פארטיי', appearances: 5, best: 'רבע גמר (2010)', announced: false, stars: ['מוחמד קודוס', 'תומאס פארטיי', 'ג\'ורדאן איוו', 'אנטואן סמניו'] },
+    'Panama': { coach: 'תומאס כריסטיאנסן', captain: 'אדריאן מארטינז', appearances: 2, best: 'שלב הבתים', announced: false, stars: ['אדריאן מארטינז', 'איסמעיל דיאז', 'אדגר באראהונה'] }
   };
 
+  let selectedTeam = null;
+
   function renderSquads() {
-    const container = document.getElementById('squads-list');
+    const container = document.getElementById('team-selector');
     if (!container) return;
 
     // Group teams by group letter
@@ -2934,50 +3848,160 @@
     const groupNames = Object.keys(teamsByGroup).sort();
     let html = '';
     groupNames.forEach(groupName => {
+      html += `<div class="team-group-row">
+        <div class="team-group-label">${groupName}</div>
+        <div class="team-group-buttons">`;
       Array.from(teamsByGroup[groupName]).sort().forEach(team => {
-        const data = SQUADS_DATA[team] || {};
         const flag = flagUrl(team);
         const tHe = teamHe(team);
-        html += `<div class="squad-card">
-          <div class="squad-header">
-            ${flag ? `<div class="squad-flag"><img src="${flag}" alt="${tHe}" loading="lazy"></div>` : ''}
-            <div class="squad-info">
-              <div class="squad-name">${tHe}</div>
-              <div class="squad-group">${groupName}</div>
-            </div>
-          </div>
-          ${data.coach ? `<div class="squad-meta">
-            <strong>מאמן:</strong> ${data.coach}<br>
-            ${data.appearances ? `<strong>מונדיאלים:</strong> ${data.appearances}<br>` : ''}
-            ${data.best ? `<strong>שיא:</strong> ${data.best}` : ''}
-          </div>` : '<div class="squad-meta" style="color:var(--ink-faint);">מידע יתעדכן בקרוב</div>'}
-          ${data.stars && data.stars.length ? `<div class="squad-stars">${data.stars.map(s => `<span class="squad-star">${s}</span>`).join('')}</div>` : ''}
-        </div>`;
+        html += `<button class="team-btn" data-team="${team}">
+          ${flag ? `<div class="team-btn-flag"><img src="${flag}" alt="${tHe}" loading="lazy"></div>` : ''}
+          <div class="team-btn-name">${tHe}</div>
+        </button>`;
+      });
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+
+    // Click handlers
+    container.querySelectorAll('.team-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.team-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showTeamSquad(btn.dataset.team);
+        // Scroll to the squad detail
+        setTimeout(() => {
+          const detail = document.getElementById('squad-detail');
+          if (detail) {
+            detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
       });
     });
+  }
 
-    container.innerHTML = html || '<div class="loading-state">טוען...</div>';
+  function teamGroupFor(team) {
+    const m = mundialFixtures.find(x => x.team1 === team || x.team2 === team);
+    return m?.group || '';
+  }
+
+  function playerEl(p) {
+    const isCaptain = p.captain;
+    return `<div class="squad-player ${isCaptain ? 'captain' : ''}">
+      ${p.num ? `<span class="squad-player-num">${p.num}</span>` : '<span class="squad-player-num">·</span>'}
+      <span class="squad-player-name">${p.n}</span>
+      ${isCaptain ? '<span class="squad-player-badge">קפטן</span>' : ''}
+    </div>`;
+  }
+
+  function showTeamSquad(team) {
+    const container = document.getElementById('squad-detail');
+    if (!container) return;
+    const data = SQUADS_DATA[team];
+    const flag = flagUrl(team);
+    const tHe = teamHe(team);
+    const group = teamGroupFor(team);
+
+    if (!data) {
+      container.innerHTML = `<div class="squad-detail">
+        <div class="squad-detail-header">
+          ${flag ? `<div class="squad-detail-flag"><img src="${flag}" alt="${tHe}"></div>` : ''}
+          <div class="squad-detail-info">
+            <div class="squad-detail-name">${tHe}</div>
+            <div class="squad-detail-group">${group}</div>
+          </div>
+        </div>
+        <div class="squad-partial-note">מידע מפורט על הסגל יתעדכן בקרוב</div>
+      </div>`;
+      return;
+    }
+
+    let html = `<div class="squad-detail">
+      <div class="squad-detail-header">
+        ${flag ? `<div class="squad-detail-flag"><img src="${flag}" alt="${tHe}"></div>` : ''}
+        <div class="squad-detail-info">
+          <div class="squad-detail-name">${tHe}</div>
+          <div class="squad-detail-group">${group}</div>
+        </div>
+      </div>
+      <div class="squad-detail-meta">
+        <div class="squad-meta-row">
+          <span class="squad-meta-label">מאמן</span>
+          <span class="squad-meta-value">${data.coach || '—'}</span>
+        </div>
+        <div class="squad-meta-row">
+          <span class="squad-meta-label">קפטן</span>
+          <span class="squad-meta-value">${data.captain || '—'}</span>
+        </div>
+        <div class="squad-meta-row">
+          <span class="squad-meta-label">השתתפויות במונדיאל</span>
+          <span class="squad-meta-value">${data.appearances || '—'}</span>
+        </div>
+        <div class="squad-meta-row">
+          <span class="squad-meta-label">שיא היסטורי</span>
+          <span class="squad-meta-value">${data.best || '—'}</span>
+        </div>
+      </div>`;
+
+    // If full squad with positions
+    if (data.gk && data.gk.length > 0) {
+      const sections = [
+        { key: 'gk', cls: 'pos-gk', icon: '🧤', title: 'שוערים' },
+        { key: 'def', cls: 'pos-def', icon: '🛡️', title: 'הגנה' },
+        { key: 'mid', cls: 'pos-mid', icon: '⚙️', title: 'קישור' },
+        { key: 'fwd', cls: 'pos-fwd', icon: '⚽', title: 'התקפה' }
+      ];
+      if (!data.announced) {
+        html += `<div class="squad-partial-note">הסגל המוצג מבוסס על שחקנים שצפויים להיכלל · הסגל הסופי יוכרז ב-1.6.2026</div>`;
+      }
+      sections.forEach(s => {
+        const players = data[s.key];
+        if (!players || !players.length) return;
+        html += `<div class="squad-section ${s.cls}">
+          <div class="squad-section-title">
+            <span class="squad-section-icon">${s.icon}</span>
+            <span>${s.title}</span>
+            <span class="squad-section-count">${players.length}</span>
+          </div>
+          <div class="squad-players">${players.map(playerEl).join('')}</div>
+        </div>`;
+      });
+    } else if (data.stars && data.stars.length) {
+      // Fallback - just show stars
+      html += `<div class="squad-partial-note">הסגל המלא יוכרז ב-1.6.2026 · להלן השחקנים הבולטים הצפויים להיכלל</div>`;
+      html += `<div class="squad-section pos-fwd">
+        <div class="squad-section-title">
+          <span class="squad-section-icon">⭐</span>
+          <span>שחקנים בולטים</span>
+          <span class="squad-section-count">${data.stars.length}</span>
+        </div>
+        <div class="squad-players">${data.stars.map(s => `<div class="squad-player"><span class="squad-player-num">·</span><span class="squad-player-name">${s}</span></div>`).join('')}</div>
+      </div>`;
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
   }
 
   // ============ BRACKET ============
-  // R32 pairings per FIFA (matches 73-88)
+  // R32 pairings per FIFA (matches 73-88) - SHORT labels
   const R32_PAIRINGS = [
-    { num: 73, top: '2A', bot: '2B', label: 'מקום 2 קב\' A', label2: 'מקום 2 קב\' B' },
-    { num: 74, top: '1E', bot: '3A/B/C/D/F', label: '1A קב\' E', label2: 'שלישית 3', hint: 'מ-A,B,C,D,F' },
-    { num: 75, top: '1F', bot: '2C', label: '1A קב\' F', label2: 'מקום 2 קב\' C' },
-    { num: 76, top: '1C', bot: '2F', label: '1A קב\' C', label2: 'מקום 2 קב\' F' },
-    { num: 77, top: '1I', bot: '3C/D/F/G/H', label: '1A קב\' I', label2: 'שלישית 3', hint: 'מ-C,D,F,G,H' },
-    { num: 78, top: '2E', bot: '2I', label: 'מקום 2 קב\' E', label2: 'מקום 2 קב\' I' },
-    { num: 79, top: '1A', bot: '3C/E/F/H/I', label: '1A קב\' A', label2: 'שלישית 3', hint: 'מ-C,E,F,H,I' },
-    { num: 80, top: '1L', bot: '3E/H/I/J/K', label: '1A קב\' L', label2: 'שלישית 3', hint: 'מ-E,H,I,J,K' },
-    { num: 81, top: '1D', bot: '3B/E/F/I/J', label: '1A קב\' D', label2: 'שלישית 3', hint: 'מ-B,E,F,I,J' },
-    { num: 82, top: '1G', bot: '3A/E/H/I/J', label: '1A קב\' G', label2: 'שלישית 3', hint: 'מ-A,E,H,I,J' },
-    { num: 83, top: '2K', bot: '2L', label: 'מקום 2 קב\' K', label2: 'מקום 2 קב\' L' },
-    { num: 84, top: '1H', bot: '2J', label: '1A קב\' H', label2: 'מקום 2 קב\' J' },
-    { num: 85, top: '1B', bot: '3E/F/G/I/J', label: '1A קב\' B', label2: 'שלישית 3', hint: 'מ-E,F,G,I,J' },
-    { num: 86, top: '1J', bot: '2H', label: '1A קב\' J', label2: 'מקום 2 קב\' H' },
-    { num: 87, top: '1K', bot: '3D/E/I/J/L', label: '1A קב\' K', label2: 'שלישית 3', hint: 'מ-D,E,I,J,L' },
-    { num: 88, top: '2D', bot: '2G', label: 'מקום 2 קב\' D', label2: 'מקום 2 קב\' G' }
+    { num: 73, top: '2A', bot: '2B' },
+    { num: 74, top: '1E', bot: '3°(A/B/C/D/F)' },
+    { num: 75, top: '1F', bot: '2C' },
+    { num: 76, top: '1C', bot: '2F' },
+    { num: 77, top: '1I', bot: '3°(C/D/F/G/H)' },
+    { num: 78, top: '2E', bot: '2I' },
+    { num: 79, top: '1A', bot: '3°(C/E/F/H/I)' },
+    { num: 80, top: '1L', bot: '3°(E/H/I/J/K)' },
+    { num: 81, top: '1D', bot: '3°(B/E/F/I/J)' },
+    { num: 82, top: '1G', bot: '3°(A/E/H/I/J)' },
+    { num: 83, top: '2K', bot: '2L' },
+    { num: 84, top: '1H', bot: '2J' },
+    { num: 85, top: '1B', bot: '3°(E/F/G/I/J)' },
+    { num: 86, top: '1J', bot: '2H' },
+    { num: 87, top: '1K', bot: '3°(D/E/I/J/L)' },
+    { num: 88, top: '2D', bot: '2G' }
   ];
 
   // R16: which R32 matches feed which R16 match
@@ -3006,14 +4030,37 @@
     { num: 102, w1: 99, w2: 100 }
   ];
 
-  function bracketMatchEl(num, topLabel, botLabel, isFinal, extraMeta) {
-    const cls = isFinal ? 'bracket-match match-final' : 'bracket-match';
-    return `<div class="${cls}">
-      <span class="bracket-match-num">M${num}</span>
-      <div class="bracket-team placeholder">${topLabel || 'TBD'}</div>
-      <div class="bracket-vs">VS</div>
-      <div class="bracket-team placeholder">${botLabel || 'TBD'}</div>
-      ${extraMeta ? `<div class="bracket-meta">${extraMeta}</div>` : ''}
+  // Map for quick lookup
+  const R32_BY_NUM = {};
+  R32_PAIRINGS.forEach(p => { R32_BY_NUM[p.num] = p; });
+
+  // R16 card - shows source slots from R32 in two lines
+  function r16Card(tag, r32a, r32b) {
+    const pa = R32_BY_NUM[r32a];
+    const pb = R32_BY_NUM[r32b];
+    return `<div class="bm bm-r16">
+      <span class="bm-tag">${tag}</span>
+      <div class="bm-team placeholder">${pa.top}&nbsp;·&nbsp;${pa.bot}</div>
+      <div class="bm-vs">VS</div>
+      <div class="bm-team placeholder">${pb.top}&nbsp;·&nbsp;${pb.bot}</div>
+    </div>`;
+  }
+
+  function qfCard(tag, r16a, r16b) {
+    return `<div class="bm bm-qf">
+      <span class="bm-tag">${tag}</span>
+      <div class="bm-team placeholder">מנצח ${r16a}</div>
+      <div class="bm-vs">VS</div>
+      <div class="bm-team placeholder">מנצח ${r16b}</div>
+    </div>`;
+  }
+
+  function sfCard(tag, qfa, qfb) {
+    return `<div class="bm bm-sf">
+      <span class="bm-tag">${tag}</span>
+      <div class="bm-team placeholder">מנצח ${qfa}</div>
+      <div class="bm-vs">VS</div>
+      <div class="bm-team placeholder">מנצח ${qfb}</div>
     </div>`;
   }
 
@@ -3021,43 +4068,63 @@
     const container = document.getElementById('bracket-wrap');
     if (!container) return;
 
-    let html = '<div class="bracket-rounds">';
+    let html = '';
 
-    // R32 column
-    html += '<div class="bracket-col"><div class="bracket-col-header">שמינית גמר (Round of 32)</div>';
-    R32_PAIRINGS.forEach(p => {
-      html += bracketMatchEl(p.num, p.label, p.label2 + (p.hint ? ` (${p.hint})` : ''));
-    });
-    html += '</div>';
+    html += `<div class="bracket-main">
+      <!-- LEFT R16 column (top half of bracket) -->
+      <div class="br-col col-r16-l">
+        ${r16Card('R16-1', 73, 75)}
+        ${r16Card('R16-2', 74, 77)}
+        ${r16Card('R16-5', 83, 84)}
+        ${r16Card('R16-6', 81, 82)}
+      </div>
 
-    // R16 column
-    html += '<div class="bracket-col"><div class="bracket-col-header">שמינית גמר (Round of 16)</div>';
-    R16_PAIRINGS.forEach(p => {
-      html += bracketMatchEl(p.num, `מנצח M${p.w1}`, `מנצח M${p.w2}`);
-    });
-    html += '</div>';
+      <!-- LEFT QF column -->
+      <div class="br-col col-qf-l">
+        ${qfCard('QF-1', 'R16-1', 'R16-2')}
+        ${qfCard('QF-2', 'R16-5', 'R16-6')}
+      </div>
 
-    // QF column
-    html += '<div class="bracket-col"><div class="bracket-col-header">רבע גמר</div>';
-    QF_PAIRINGS.forEach(p => {
-      html += bracketMatchEl(p.num, `מנצח M${p.w1}`, `מנצח M${p.w2}`);
-    });
-    html += '</div>';
+      <!-- CENTER: SF-1, FINAL, SF-2 -->
+      <div class="br-col col-center">
+        ${sfCard('SF-1', 'QF-1', 'QF-2')}
+        <div class="bm bm-final">
+          <span class="bm-tag">הגמר</span>
+          ${trophySvg('big')}
+          <div class="bm-team placeholder">מנצח SF-1</div>
+          <div class="bm-vs">VS</div>
+          <div class="bm-team placeholder">מנצח SF-2</div>
+          <div class="bm-meta">MetLife Stadium · 19/7 · 15:00 ET</div>
+        </div>
+        ${sfCard('SF-2', 'QF-3', 'QF-4')}
+      </div>
 
-    // SF column
-    html += '<div class="bracket-col"><div class="bracket-col-header">חצי גמר</div>';
-    SF_PAIRINGS.forEach(p => {
-      html += bracketMatchEl(p.num, `מנצח M${p.w1}`, `מנצח M${p.w2}`);
-    });
-    html += '</div>';
+      <!-- RIGHT QF column -->
+      <div class="br-col col-qf-r">
+        ${qfCard('QF-3', 'R16-3', 'R16-4')}
+        ${qfCard('QF-4', 'R16-7', 'R16-8')}
+      </div>
 
-    // Final + 3rd place
-    html += '<div class="bracket-col"><div class="bracket-col-header">גמר ומקום 3</div>';
-    html += bracketMatchEl(103, 'מפסיד M101', 'מפסיד M102', false, 'מקום 3 · מיאמי');
-    html += bracketMatchEl(104, 'מנצח M101', 'מנצח M102', true, 'הגמר! · MetLife');
-    html += '</div>';
+      <!-- RIGHT R16 column (bottom half of bracket) -->
+      <div class="br-col col-r16-r">
+        ${r16Card('R16-3', 76, 78)}
+        ${r16Card('R16-4', 79, 80)}
+        ${r16Card('R16-7', 86, 88)}
+        ${r16Card('R16-8', 85, 87)}
+      </div>
+    </div>`;
 
-    html += '</div>';
+    // Third place
+    html += `<div class="bracket-third">
+      <span class="bm-tag">🥉 משחק מקום 3</span>
+      <div>
+        <span class="bm-team placeholder">מפסיד SF-1</span>
+        <span style="color:#a16d2c; font-weight:800; font-size:11px;">VS</span>
+        <span class="bm-team placeholder">מפסיד SF-2</span>
+      </div>
+      <div class="bracket-third-meta">מיאמי · 18/7 · 17:00 ET</div>
+    </div>`;
+
     container.innerHTML = html;
   }
 
@@ -3696,6 +4763,50 @@
   // ============ CHECKLIST ============
   const CHECKLIST_KEY = 'nyc_checklist_v1';
 
+  function reorderChecklist() {
+    // Move checked items to the bottom of their list (within each ul.check-list)
+    document.querySelectorAll('ul.check-list').forEach(ul => {
+      const items = Array.from(ul.children).filter(c => c.tagName === 'LI');
+      // Separate by checked state, preserving subheaders
+      const subheaders = items.filter(li => li.classList.contains('check-subhead'));
+      // We'll restructure: sub-headers stay in their original relative position,
+      // but within each "section" (sub-header to next sub-header), unchecked items go first.
+
+      // Strategy: walk through items, build groups, and within each group put unchecked first
+      const groups = []; // [{header: liOrNull, items: []}]
+      let current = { header: null, items: [] };
+      items.forEach(li => {
+        if (li.classList.contains('check-subhead')) {
+          // Start new group
+          if (current.header || current.items.length) groups.push(current);
+          current = { header: li, items: [] };
+        } else {
+          current.items.push(li);
+        }
+      });
+      if (current.header || current.items.length) groups.push(current);
+
+      // Rebuild
+      ul.innerHTML = '';
+      groups.forEach(g => {
+        if (g.header) ul.appendChild(g.header);
+        const unchecked = g.items.filter(li => {
+          const cb = li.querySelector('input[type="checkbox"]');
+          return cb && !cb.checked;
+        });
+        const checked = g.items.filter(li => {
+          const cb = li.querySelector('input[type="checkbox"]');
+          return cb && cb.checked;
+        });
+        unchecked.forEach(li => ul.appendChild(li));
+        checked.forEach(li => {
+          li.classList.add('check-done');
+          ul.appendChild(li);
+        });
+      });
+    });
+  }
+
   function loadChecklist() {
     let saved = {};
     try {
@@ -3705,23 +4816,34 @@
 
     document.querySelectorAll('[data-check]').forEach(input => {
       const id = input.dataset.check;
-      if (saved[id]) input.checked = true;
+      if (saved[id]) {
+        input.checked = true;
+        // Mark parent li as done
+        const li = input.closest('li');
+        if (li) li.classList.add('check-done');
+      }
       input.addEventListener('change', () => {
         let current = {};
         try {
           const d = localStorage.getItem(CHECKLIST_KEY);
           if (d) current = JSON.parse(d);
         } catch(e) {}
+        const li = input.closest('li');
         if (input.checked) {
           current[id] = true;
+          if (li) li.classList.add('check-done');
         } else {
           delete current[id];
+          if (li) li.classList.remove('check-done');
         }
         localStorage.setItem(CHECKLIST_KEY, JSON.stringify(current));
         updateProgress();
+        // Reorder after a brief delay so the user sees the click animation
+        setTimeout(reorderChecklist, 300);
       });
     });
 
+    reorderChecklist();
     updateProgress();
   }
 
