@@ -269,30 +269,59 @@
     .cd-sep { font-size: 14px; padding: 0 2px; }
     .countdown-tag { font-size: 10px; flex-shrink: 0; }
 
-    /* Main tabs */
+    /* Main tabs - center on mobile */
     .main-tabs {
       gap: 4px;
       padding: 5px;
       margin-bottom: 14px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 100%;
     }
-    .main-tab { padding: 9px 12px; font-size: 13px; }
+    .main-tab {
+      padding: 9px 14px;
+      font-size: 13px;
+      flex: 1;
+      white-space: nowrap;
+    }
 
-    /* View switcher - horizontal scroll if needed */
+    /* View switcher - container-wide with internal horizontal scroll */
     .switcher {
-      padding: 3px;
+      padding: 4px;
       gap: 2px;
       overflow-x: auto;
+      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      width: 100%;
+      max-width: 100%;
+      justify-content: flex-start;
+      position: static;
+      top: auto;
     }
     .switcher::-webkit-scrollbar { display: none; }
     .switch-btn {
-      padding: 8px 11px;
+      padding: 8px 12px;
       font-size: 12px;
       flex-shrink: 0;
       gap: 4px;
+      white-space: nowrap;
     }
     .switch-btn svg { width: 14px; height: 14px; }
+
+    /* Same for mundial switcher */
+    .mundial-switcher {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+      max-width: 100%;
+      justify-content: flex-start;
+    }
+    .mundial-switcher::-webkit-scrollbar { display: none; }
+    .mundial-switcher .switch-btn { flex-shrink: 0; white-space: nowrap; }
 
     /* Sections */
     .section { padding: 14px 0 20px; }
@@ -406,27 +435,22 @@
     .nm-time-num { font-size: 16px; }
     .nm-time-label { font-size: 8px; }
 
-    /* Mundial sub-tabs */
-    .mundial-switcher {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .mundial-switcher::-webkit-scrollbar { display: none; }
-    .mundial-switcher .switch-btn { flex-shrink: 0; }
-
-    /* Fixtures (Mundial) */
+    /* Fixtures filter */
     .fixtures-filter {
       gap: 6px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 100%;
     }
     .fixtures-filter::-webkit-scrollbar { display: none; }
     .ff-btn {
       padding: 7px 12px;
       font-size: 12px;
       flex-shrink: 0;
+      white-space: nowrap;
     }
     .fixture-day-header { font-size: 13px; padding: 8px 12px; }
     .fixture-row { padding: 10px 10px; gap: 8px; }
