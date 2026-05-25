@@ -2,7 +2,8 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#00a155">
 <title>New York · 11–21 June</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -223,146 +224,336 @@
     padding-right: 4px;
   }
 
-  @media (max-width: 480px) {
-    .countdown { padding: 12px 16px; gap: 10px; }
-    .cd-num { font-size: 22px; }
-    .cd-unit { min-width: 36px; }
+  /* ============================================ */
+  /* COMPREHENSIVE MOBILE OPTIMIZATION             */
+  /* ============================================ */
+
+  /* TABLET & LARGE PHONES */
+  @media (max-width: 768px) {
+    .container { padding: 0 16px; max-width: 100%; }
   }
 
-  /* ============ MOBILE OPTIMIZATIONS ============ */
+  /* PHONES (most common mobile size) */
   @media (max-width: 640px) {
-    .container { padding: 0 14px; }
+    .container { padding: 0 12px; }
 
     /* Hero */
-    .hero { padding: 30px 0 16px; }
-    .hero h1 { font-size: clamp(36px, 9vw, 56px) !important; line-height: 1; letter-spacing: -0.02em; }
-    .hero-sub { font-size: clamp(20px, 6vw, 30px) !important; margin-bottom: 18px; }
-    .trophy-icon { width: 40px !important; height: 40px !important; }
+    .hero { padding: 24px 0 12px; }
+    .hero h1 {
+      font-size: clamp(34px, 9vw, 52px) !important;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: clamp(18px, 5.5vw, 26px) !important;
+      margin-bottom: 16px;
+      gap: 8px !important;
+    }
+    .trophy-icon {
+      width: clamp(32px, 7vw, 44px) !important;
+      height: clamp(50px, 11vw, 70px) !important;
+    }
 
     /* Countdown */
-    .countdown { padding: 10px 14px; gap: 8px; margin-bottom: 22px; }
-    .countdown-label { font-size: 11px; }
+    .countdown {
+      padding: 10px 14px;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: nowrap;
+    }
+    .countdown-label { font-size: 11px; flex-shrink: 0; }
+    .countdown-grid { gap: 4px; }
     .cd-num { font-size: 18px; }
     .cd-label { font-size: 8px; }
-    .cd-unit { min-width: 30px; }
-    .cd-sep { font-size: 16px; }
-    .countdown-tag { font-size: 11px; }
+    .cd-unit { min-width: 28px; }
+    .cd-sep { font-size: 14px; padding: 0 2px; }
+    .countdown-tag { font-size: 10px; flex-shrink: 0; }
 
     /* Main tabs */
-    .main-tabs { gap: 4px; padding: 5px; margin-bottom: 16px; }
-    .main-tab { padding: 9px 14px; font-size: 13px; }
+    .main-tabs {
+      gap: 4px;
+      padding: 5px;
+      margin-bottom: 14px;
+    }
+    .main-tab { padding: 9px 12px; font-size: 13px; }
 
-    /* View switcher */
-    .switcher { padding: 3px; gap: 2px; }
-    .switch-btn { padding: 8px 12px; font-size: 12px; }
-    .switch-btn svg { width: 16px; height: 16px; }
+    /* View switcher - horizontal scroll if needed */
+    .switcher {
+      padding: 3px;
+      gap: 2px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .switcher::-webkit-scrollbar { display: none; }
+    .switch-btn {
+      padding: 8px 11px;
+      font-size: 12px;
+      flex-shrink: 0;
+      gap: 4px;
+    }
+    .switch-btn svg { width: 14px; height: 14px; }
 
     /* Sections */
-    .section { padding: 16px 0 22px; }
-    .section-title { font-size: 24px !important; }
+    .section { padding: 14px 0 20px; }
+    .section-title { font-size: 22px !important; }
     .section-label { font-size: 11px; }
-    .section-sub { font-size: 13px; }
+    .section-sub { font-size: 13px; line-height: 1.5; }
 
     /* Day cards */
     .day { border-radius: 14px; }
-    .day-header { padding: 14px 14px; gap: 10px; }
-    .day-num .n { font-size: 26px; }
+    .day-header { padding: 12px 14px; gap: 10px; }
+    .day-num { padding: 8px 10px; min-width: 50px; }
+    .day-num .n { font-size: 24px; }
     .day-num .w { font-size: 10px; }
-    .day-title { font-size: 15px; }
+    .day-title { font-size: 14px; line-height: 1.3; }
     .day-sub { font-size: 12px; }
-    .item-time { font-size: 12px; min-width: 50px; }
-    .item-body { font-size: 13px; }
+    .day-body { padding: 0 14px 14px; }
+    .item { padding: 8px 0; gap: 10px; }
+    .item-time { font-size: 11px; min-width: 46px; }
+    .item-body { font-size: 13px; line-height: 1.45; }
     .item-body strong { font-size: 14px; }
     .item-body .note { font-size: 11px; }
+    .day-icon { font-size: 24px; }
 
     /* Calendar */
-    .cal-grid { gap: 4px; }
-    .cal-cell { font-size: 11px; padding: 6px 3px; min-height: 50px; }
-    .cal-day-num { font-size: 14px; }
+    .cal-grid { gap: 3px; }
+    .cal-cell { font-size: 11px; padding: 5px 2px; min-height: 46px; }
+    .cal-day-num { font-size: 13px; }
+    .cal-header { padding: 8px 4px; font-size: 10px; }
+    .cal-tag { font-size: 9px; padding: 1px 4px; }
+
+    /* Map */
+    #map { height: 380px !important; border-radius: 12px; }
 
     /* Weather */
     .weather-card { padding: 14px; }
-    .weather-strip { gap: 6px; }
-    .wd-cell { padding: 6px 4px; min-width: 50px; }
+    .weather-header { gap: 10px; }
+    .weather-loc { font-size: 14px; }
+    .weather-note { font-size: 11px; }
+    .weather-emoji-big { font-size: 38px; }
+    .weather-strip {
+      gap: 5px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .weather-strip::-webkit-scrollbar { display: none; }
+    .wd-cell { padding: 6px 5px; min-width: 48px; flex-shrink: 0; }
     .wd-day { font-size: 10px; }
-    .wd-temp { font-size: 14px; }
+    .wd-temp { font-size: 13px; }
+    .wd-emoji { font-size: 18px; }
+    .weather-tips { gap: 6px; }
+    .weather-tips span { font-size: 11px; padding: 4px 8px; }
 
     /* Currency */
-    .currency-card { padding: 16px; }
-    .rate-value { font-size: 18px; }
-    .conv-input { font-size: 22px; }
-    .conv-unit { font-size: 13px; min-width: 70px; }
+    .currency-card { padding: 14px; }
+    .currency-rate { padding: 10px; }
+    .rate-label { font-size: 11px; }
+    .rate-value { font-size: 16px; }
+    .rate-time { font-size: 10px; }
+    .currency-converter { gap: 10px; }
+    .conv-row { gap: 8px; }
+    .conv-input { font-size: 20px; padding: 8px 10px; }
+    .conv-unit { font-size: 12px; min-width: 60px; padding: 0 8px; }
+    .conv-arrow { font-size: 16px; padding: 4px 0; }
+    .preset-row { gap: 6px; flex-wrap: wrap; }
+    .preset-label { font-size: 11px; }
     .preset-btn { padding: 5px 10px; font-size: 12px; }
 
     /* Checklist */
-    .check-group-head h3 { font-size: 17px; }
-    .check-text { font-size: 13px; }
-    .checklist-progress { padding: 14px; }
+    .checklist-progress { padding: 12px; }
+    .progress-bar { height: 8px; }
+    .progress-text { font-size: 12px; }
+    .progress-percent { font-size: 16px; }
+    .check-group { padding: 14px; }
+    .check-group-head { gap: 10px; margin-bottom: 8px; }
+    .check-group-icon { font-size: 22px; }
+    .check-group-head h3 { font-size: 16px; }
+    .check-list li { padding: 8px 0; }
+    .check-list label { gap: 10px; }
+    .check-mark { width: 20px; height: 20px; }
+    .check-text { font-size: 13px; line-height: 1.4; }
+    .check-list li.check-subhead { font-size: 11px; padding: 10px 0 4px; }
+    .reset-checklist { font-size: 11px; padding: 4px 8px; }
 
-    /* Mundial fixtures */
-    .fixtures-filter { gap: 6px; }
-    .ff-btn { padding: 7px 12px; font-size: 12px; }
-    .fixture-row { padding: 10px 10px; gap: 8px; }
-    .fixture-time { font-size: 11px; min-width: 38px; }
-    .fixture-teams { font-size: 11px; gap: 4px; }
-    .fixture-team { gap: 4px; }
-    .fixture-flag { width: 18px; height: 18px; }
-    .fixture-score { font-size: 13px; min-width: 40px; padding: 3px 7px; }
-    .fixture-day-header { font-size: 14px; padding: 8px 12px; }
-
-    /* Groups */
-    .groups-grid { grid-template-columns: 1fr; gap: 12px; }
-    .group-card { padding: 14px; }
-    .group-title { font-size: 18px; }
-    .group-table { font-size: 12px; }
-
-    /* Squads */
-    .squads-list { grid-template-columns: 1fr; gap: 12px; }
-    .squad-card { padding: 14px; }
-    .squad-name { font-size: 15px; }
-    .squad-meta { font-size: 12px; }
-    .squad-star { font-size: 10px; padding: 3px 7px; }
+    /* Mundial banner */
+    .mundial-banner {
+      padding: 14px 16px;
+      gap: 12px;
+    }
+    .mundial-banner-title { font-size: 16px; }
+    .mundial-banner-sub { font-size: 11px; }
+    .mundial-banner-emoji { font-size: 28px; }
+    .mundial-banner svg { width: 36px !important; height: 56px !important; }
 
     /* Next Match */
-    .next-match-card { padding: 22px 14px; }
-    .nm-teams { gap: 14px; }
-    .nm-flag { width: 44px; height: 44px; }
-    .nm-team { min-width: 70px; }
-    .nm-team-name { font-size: 12px; }
-    .nm-vs { font-size: 20px; }
-    .nm-meta { font-size: 12px; }
-    .nm-countdown { padding: 10px 16px; gap: 8px; }
-    .nm-time-num { font-size: 17px; }
+    .next-match-card { padding: 20px 12px; }
+    .nm-label { font-size: 11px; }
+    .nm-teams { gap: 12px; }
+    .nm-flag { width: 42px; height: 42px; }
+    .nm-team { min-width: 65px; }
+    .nm-team-name { font-size: 11px; }
+    .nm-vs { font-size: 18px; }
+    .nm-meta { font-size: 11px; }
+    .nm-countdown {
+      padding: 10px 14px;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nm-time-num { font-size: 16px; }
+    .nm-time-label { font-size: 8px; }
 
-    /* Bracket - on mobile show simplified */
-    .bracket-wrap { padding: 12px 8px; }
-    .bracket-tree { min-width: 940px; gap: 8px; }
-    .bracket-round { min-width: 170px; }
-    .bracket-match { padding: 6px 8px; }
-    .bracket-team { font-size: 10px; padding: 3px 5px; }
-    .bracket-round-header { font-size: 11px; padding: 6px 4px; }
+    /* Mundial sub-tabs */
+    .mundial-switcher {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mundial-switcher::-webkit-scrollbar { display: none; }
+    .mundial-switcher .switch-btn { flex-shrink: 0; }
 
-    /* Map */
-    #map { height: 400px !important; }
+    /* Fixtures (Mundial) */
+    .fixtures-filter {
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .fixtures-filter::-webkit-scrollbar { display: none; }
+    .ff-btn {
+      padding: 7px 12px;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .fixture-day-header { font-size: 13px; padding: 8px 12px; }
+    .fixture-row { padding: 10px 10px; gap: 8px; }
+    .fixture-time { font-size: 11px; min-width: 38px; }
+    .fixture-teams { font-size: 11px; gap: 6px; }
+    .fixture-team { gap: 5px; }
+    .fixture-flag { width: 18px; height: 18px; }
+    .fixture-score { font-size: 13px; min-width: 38px; padding: 3px 6px; }
+    .fixture-stadium { font-size: 10px; }
 
-    /* Skyline smaller */
-    .skyline { height: 120px !important; opacity: 0.6; }
+    /* Groups */
+    .groups-grid { grid-template-columns: 1fr; gap: 10px; }
+    .group-card { padding: 14px; }
+    .group-title { font-size: 16px; }
+    .group-table { font-size: 11px; }
+    .group-table th,
+    .group-table td { padding: 5px 4px; }
+    .gt-team { font-size: 11px; }
+    .gt-flag { width: 18px; height: 18px; }
 
-    /* Confetti less */
+    /* Squads */
+    .team-selector { padding: 12px; }
+    .team-selector-label { font-size: 12px; }
+    .team-group-label { font-size: 11px; }
+    .team-group-buttons {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+    }
+    .team-btn { padding: 8px 5px; gap: 3px; }
+    .team-btn-flag { width: 28px; height: 28px; }
+    .team-btn-name { font-size: 10px; }
+    .squad-detail { padding: 16px 12px; }
+    .squad-detail-header { gap: 12px; padding-bottom: 12px; margin-bottom: 12px; }
+    .squad-detail-flag { width: 44px; height: 44px; }
+    .squad-detail-name { font-size: 18px; }
+    .squad-detail-group { font-size: 12px; }
+    .squad-detail-meta { grid-template-columns: 1fr; gap: 6px; margin-bottom: 14px; }
+    .squad-meta-row { padding: 8px 10px; }
+    .squad-meta-label { font-size: 9px; }
+    .squad-meta-value { font-size: 13px; }
+    .squad-section-title { font-size: 13px; padding: 7px 10px; }
+    .squad-section-icon { font-size: 14px; }
+    .squad-players { grid-template-columns: 1fr; gap: 4px; }
+    .squad-player { padding: 6px 10px; font-size: 12px; }
+    .squad-player-num { font-size: 12px; min-width: 20px; }
+    .squad-no-selection { padding: 30px 16px; }
+    .squad-no-selection-icon { font-size: 36px; }
+    .squad-partial-note { font-size: 11px; padding: 8px 12px; }
+
+    /* Bracket - simplified mobile layout */
+    .bracket-wrap { padding: 14px 10px; }
+    .bracket-main {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .br-col { gap: 8px; }
+    .br-col.col-r16-l { grid-column: 1; grid-row: 1; }
+    .br-col.col-r16-r { grid-column: 2; grid-row: 1; }
+    .br-col.col-qf-l { grid-column: 1; grid-row: 2; }
+    .br-col.col-qf-r { grid-column: 2; grid-row: 2; }
+    .br-col.col-center { grid-column: 1 / 3; grid-row: 3; }
+    .bm { padding: 8px 8px; padding-top: 16px; }
+    .bm-tag { font-size: 9px; padding: 2px 7px; }
+    .bm-team { font-size: 10px; padding: 3px 5px; }
+    .bm-vs { font-size: 9px; }
+    .bm-final { padding: 14px 10px 10px; }
+    .bm-final .bm-tag { font-size: 11px; }
+    .bm-final svg { width: 48px !important; height: 76px !important; }
+    .bm-final .bm-team { font-size: 11px; }
+    .bm-final .bm-meta { font-size: 10px; }
+    .bracket-third { padding: 10px; margin-top: 14px; }
+    .bracket-third .bm-tag { font-size: 10px; }
+    .bracket-third .bm-team { font-size: 10px; }
+    .bracket-third-meta { font-size: 10px; }
+
+    /* Travel cards */
+    .travel-card { padding: 14px; }
+    .travel-card-title { font-size: 15px; }
+    .travel-card-detail { font-size: 12px; }
+
+    /* You are here pulse */
+    .item.now .item-time { padding: 5px 8px; font-size: 11px; }
+
+    /* Skyline / decor */
+    .skyline-bg { height: 130px; opacity: 0.6; }
     .confetti { display: none; }
-
-    /* Flag bunting */
     .bunting { transform: scale(0.7); transform-origin: top center; }
+    .bg-blob { opacity: 0.25 !important; filter: blur(70px); }
   }
 
+  /* SMALL PHONES (iPhone SE, etc.) */
   @media (max-width: 380px) {
     .container { padding: 0 10px; }
-    .hero h1 { font-size: 32px !important; }
+
+    .hero h1 { font-size: 30px !important; }
+    .hero-sub { font-size: 18px !important; }
+    .trophy-icon { width: 30px !important; height: 48px !important; }
+
     .main-tab { padding: 8px 10px; font-size: 12px; }
     .switch-btn { padding: 7px 9px; font-size: 11px; }
     .switch-btn svg { display: none; }
-    .countdown { flex-wrap: wrap; justify-content: center; }
+
+    .countdown { padding: 8px 10px; }
     .cd-num { font-size: 16px; }
+    .cd-unit { min-width: 24px; }
+    .cd-sep { font-size: 12px; padding: 0; }
+    .countdown-label { font-size: 10px; }
+    .countdown-tag { font-size: 9px; padding: 3px 7px; }
+
+    .section-title { font-size: 20px !important; }
+    .day-title { font-size: 13px; }
+    .item-time { font-size: 10px; min-width: 40px; }
+    .item-body { font-size: 12px; }
+
+    .cal-cell { font-size: 10px; min-height: 40px; padding: 4px 1px; }
+    .cal-day-num { font-size: 11px; }
+
+    .team-group-buttons { grid-template-columns: repeat(2, 1fr); }
+    .team-btn-name { font-size: 9px; }
+
+    .mundial-banner { padding: 12px 14px; gap: 10px; }
+    .mundial-banner-title { font-size: 14px; }
+    .mundial-banner-sub { font-size: 10px; }
+    .mundial-banner svg { width: 30px !important; height: 46px !important; }
+
+    .bm-team { font-size: 9px; padding: 2px 4px; }
+    .bm-tag { font-size: 8px; padding: 1px 5px; }
   }
 
   /* "You are here" indicator on current day's timeline */
@@ -1241,15 +1432,6 @@
     font-weight: 600;
   }
 
-  /* Mobile adjustments for mundial theme */
-  @media (max-width: 640px) {
-    .tab-mundial-themed { padding: 12px 6px 18px; }
-    .mundial-banner { padding: 12px 14px; gap: 10px; }
-    .mundial-banner-emoji { font-size: 28px; }
-    .mundial-banner-title { font-size: 15px; }
-    .mundial-banner-sub { font-size: 11px; }
-  }
-
   /* Squads - new tab-based UI */
   .squads-container {
     display: flex;
@@ -1511,16 +1693,6 @@
     flex-shrink: 0;
   }
 
-  @media (max-width: 640px) {
-    .team-group-buttons { grid-template-columns: repeat(2, 1fr); }
-    .team-btn-name { font-size: 10px; }
-    .squad-detail { padding: 18px 14px; }
-    .squad-detail-name { font-size: 20px; }
-    .squad-detail-flag { width: 48px; height: 48px; }
-    .squad-detail-meta { grid-template-columns: 1fr; }
-    .squad-players { grid-template-columns: 1fr; }
-  }
-
   /* OLD squads styles - kept for backwards compatibility */
   .squads-list {
     display: grid;
@@ -1606,19 +1778,6 @@
     background: var(--red-soft);
     border-radius: 14px;
     margin: 20px 0;
-  }
-
-  /* MUNDIAL - Mobile adjustments */
-  @media (max-width: 480px) {
-    .main-tab { padding: 10px 16px; font-size: 13px; }
-    .next-match-card { padding: 24px 16px; }
-    .nm-flag { width: 48px; height: 48px; }
-    .nm-team { min-width: 72px; }
-    .nm-team-name { font-size: 13px; }
-    .nm-countdown .nm-time-num { font-size: 18px; }
-    .fixture-teams { font-size: 12px; }
-    .fixture-time { min-width: 42px; font-size: 12px; }
-    .fixture-score { font-size: 14px; }
   }
 
   .switcher {
@@ -2540,12 +2699,6 @@
     color: var(--ink);
   }
 
-  @media (max-width: 640px) {
-    .weather-card { padding: 16px; }
-    .weather-emoji-big { font-size: 36px; }
-    .weather-loc { font-size: 18px; }
-    .weather-day { flex: 0 0 72px; padding: 10px 6px; }
-  }
 </style>
 </head>
 <body>
