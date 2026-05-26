@@ -1742,6 +1742,91 @@
   .tag.beach { background: var(--yellow-soft); color: var(--yellow); }
   .tag.rest { background: var(--green-soft); color: var(--green); }
   .tag.travel { background: var(--blue-soft); color: var(--blue); }
+  .tag.nba {
+    background: linear-gradient(135deg, #f9b234 0%, #d68326 100%);
+    color: white;
+    box-shadow: 0 2px 6px rgba(214, 131, 38, 0.3);
+  }
+
+  /* Scenario blocks - alternative day plans */
+  .scenario-block {
+    margin: 12px 0;
+    padding: 14px 14px 4px;
+    border-radius: 12px;
+    border: 2px dashed;
+    position: relative;
+  }
+  .scenario-block.scenario-a {
+    background: linear-gradient(135deg, #fff4dc 0%, #ffe9c4 100%);
+    border-color: #f9b234;
+  }
+  .scenario-block.scenario-b {
+    background: linear-gradient(135deg, #e8f4ff 0%, #d4e8ff 100%);
+    border-color: #4a90d9;
+  }
+  .scenario-head {
+    margin-bottom: 8px;
+  }
+  .scenario-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.04em;
+  }
+  .scenario-a-tag {
+    background: linear-gradient(135deg, #f9b234 0%, #c98a18 100%);
+    box-shadow: 0 2px 6px rgba(201, 138, 24, 0.3);
+  }
+  .scenario-b-tag {
+    background: linear-gradient(135deg, #4a90d9 0%, #2a6cb0 100%);
+    box-shadow: 0 2px 6px rgba(42, 108, 176, 0.3);
+  }
+  .scenario-block .item {
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+  }
+  .scenario-block .item:last-child {
+    border-bottom: none;
+  }
+
+  /* NBA Finals callout - special look */
+  .callout.nba-callout {
+    background: linear-gradient(135deg, #fff4dc 0%, #ffe6b8 100%);
+    border: 2px solid #f9b234;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout.nba-callout::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(249, 178, 52, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .callout.nba-callout .callout-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  }
+  .callout.nba-callout strong {
+    color: #b8651a;
+  }
+  .callout.nba-callout .nba-game {
+    display: inline-block;
+    background: #1a1d2e;
+    color: #f9b234;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    margin: 0 2px;
+  }
 
   .day.match-day { border-color: var(--accent-soft); }
   .day.match-day .day-num { background: var(--accent-soft); }
@@ -2658,11 +2743,24 @@
     .day-icon { font-size: 24px; }
 
     /* Calendar */
+    .calendar { padding: 12px; border-radius: 14px; }
+    .cal-header { margin-bottom: 12px; padding-bottom: 10px; }
+    .cal-month { font-size: 20px; }
+    .cal-year { font-size: 12px; }
+    .cal-weekdays { gap: 3px; margin-bottom: 4px; }
+    .cal-wd { font-size: 9px; padding: 4px 0; letter-spacing: 0.04em; }
     .cal-grid { gap: 3px; }
-    .cal-cell { font-size: 11px; padding: 5px 2px; min-height: 46px; }
-    .cal-day-num { font-size: 13px; }
-    .cal-header { padding: 8px 4px; font-size: 10px; }
-    .cal-tag { font-size: 9px; padding: 1px 4px; }
+    .cal-cell {
+      padding: 4px 2px;
+      min-height: 0 !important;
+      aspect-ratio: 1 !important;
+      font-size: 10px;
+      border-radius: 8px;
+    }
+    .cal-day-num { font-size: 12px; font-weight: 700; }
+    .cal-event-label { font-size: 8px; line-height: 1.1; }
+    .cal-tag { font-size: 8px; padding: 1px 3px; }
+    .cal-cell.empty { display: block; }
 
     /* Map */
     #map { height: 380px !important; border-radius: 12px; }
@@ -2876,8 +2974,12 @@
     .item-time { font-size: 10px; min-width: 40px; }
     .item-body { font-size: 12px; }
 
-    .cal-cell { font-size: 10px; min-height: 40px; padding: 4px 1px; }
-    .cal-day-num { font-size: 11px; }
+    .calendar { padding: 8px; }
+    .cal-cell { font-size: 9px; padding: 3px 1px; min-height: 0; }
+    .cal-day-num { font-size: 10px; }
+    .cal-event-label { font-size: 7px; }
+    .cal-wd { font-size: 8px; padding: 2px 0; }
+    .cal-month { font-size: 18px; }
 
     .team-group-buttons { grid-template-columns: repeat(2, 1fr); }
     .team-btn-name { font-size: 9px; }
@@ -3183,8 +3285,8 @@
         <div class="day-header" onclick="toggle(this)">
           <div class="day-num"><span class="n">13</span><span class="w">Sat</span></div>
           <div class="day-main">
-            <div class="day-title">ברוקלין · וויליאמסבורג</div>
-            <div class="day-sub">Smorgasburg, ⚽ ברזיל-מרוקו, שקיעה</div>
+            <div class="day-title">ברוקלין · וויליאמסבורג <span class="tag nba">🏀 NBA G5</span></div>
+            <div class="day-sub">Smorgasburg, ⚽ ברזיל-מרוקו, שקיעה או NBA</div>
           </div>
           <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
@@ -3192,8 +3294,33 @@
           <div class="item"><div class="item-time">11:30</div><div class="item-body"><strong>Smorgasburg Williamsburg</strong><span class="note">שוק אוכל ענק. שבת בלבד. לבוא רעבים</span></div></div>
           <div class="item"><div class="item-time">14:30</div><div class="item-body">שיטוט בוויליאמסבורג<span class="note">וינטג', בתי קפה, חנויות עצמאיות</span></div></div>
           <div class="item"><div class="item-time">17:30</div><div class="item-body"><strong>⚽ Brazil vs Morocco</strong> - בר בוויליאמסבורג<span class="note">המשחק ב-18:00 שעון ניו יורק ב-MetLife Stadium - בדיוק האצטדיון שלכם 3 ימים אחרי! ברזיל = קהל סוער. בארים: Banter, Spuyten Duyvil, Williamsburg Beer & Soccer</span></div></div>
-          <div class="item"><div class="item-time">20:30</div><div class="item-body"><strong>ארוחת ערב באזור</strong><span class="note">המון אופציות בוויליאמסבורג — לבחור ולהזמין מראש</span></div></div>
-          <div class="item"><div class="item-time">23:00</div><div class="item-body">חזרה לדירה</div></div>
+
+          <div class="callout nba-callout">
+            <div class="callout-icon">🏀</div>
+            <div class="callout-text"><strong>שני תרחישים — תלוי אם יש <span class="nba-game">Game 5*</span> ב-NBA:</strong> אם הניקס הולכים ל-G5 (20:30 ET) — נקצר את הברזיל-מרוקו ונחזור למנהטן. אם לא — שקיעה ב-Domino Park ואז חזרה.</div>
+          </div>
+
+          <div class="scenario-block scenario-a">
+            <div class="scenario-head">
+              <span class="scenario-tag scenario-a-tag">תרחיש A · יש NBA G5 🏀</span>
+            </div>
+            <div class="item"><div class="item-time">~19:30</div><div class="item-body"><strong>יציאה מהבר במחצית/אמצע</strong> ברזיל-מרוקו<span class="note">לא לתפוס שיא של תחבורה — לקפוץ לסאבוויי</span></div></div>
+            <div class="item"><div class="item-time">20:00</div><div class="item-body"><strong>חזרה לאזור הדירה</strong> (~30-40 דק' L→1/2/3)</div></div>
+            <div class="item"><div class="item-time">20:30</div><div class="item-body"><strong>ארוחת ערב מהירה במנהטן</strong> + תחילת המשחק<span class="note">פיצה לקחת בדרך, או מקום קרוב לדירה</span></div></div>
+            <div class="item"><div class="item-time">20:30-23:00</div><div class="item-body"><strong>🏀 NBA Game 5</strong> — בדירה או בבר ספורט במנהטן<span class="note">אם רוצים אווירה: The Ainsworth, Stout NYC, או Foley's. אם רוצים נוחות: בדירה עם בירה</span></div></div>
+          </div>
+
+          <div class="scenario-block scenario-b">
+            <div class="scenario-head">
+              <span class="scenario-tag scenario-b-tag">תרחיש B · אין NBA G5 ✨</span>
+            </div>
+            <div class="item"><div class="item-time">~19:30</div><div class="item-body"><strong>יציאה מהבר אחרי המחצית</strong><span class="note">ראינו את עיקר המשחק, הולכים לתפוס שקיעה</span></div></div>
+            <div class="item"><div class="item-time">19:45</div><div class="item-body"><strong>הליכה ל-Domino Park</strong><span class="note">~10 דקות מהבר. נוף מהמם לגשר וויליאמסבורג + מנהטן</span></div></div>
+            <div class="item"><div class="item-time">20:29</div><div class="item-body"><strong>🌅 שקיעה ב-Domino Park</strong><span class="note">השמש שוקעת בדיוק 20:29. נוף לאיסט ריבר + מנהטן באור זהוב. רומנטי וקלאסי</span></div></div>
+            <div class="item"><div class="item-time">21:00</div><div class="item-body">חזרה למנהטן · לקחת סאבוויי או אובר</div></div>
+            <div class="item"><div class="item-time">21:30</div><div class="item-body"><strong>ארוחת ערב באזור הדירה</strong><span class="note">משהו רגוע - לא צריכים להתאמץ אחרי יום שלם</span></div></div>
+            <div class="item"><div class="item-time">23:30</div><div class="item-body">חזרה לדירה</div></div>
+          </div>
         </div></div>
       </div>
 
@@ -3201,7 +3328,7 @@
         <div class="day-header" onclick="toggle(this)">
           <div class="day-num"><span class="n">14</span><span class="w">Sun</span></div>
           <div class="day-main">
-            <div class="day-title">יום משפחה · ⚽ הולנד-יפן</div>
+            <div class="day-title">סנטרל פארק · ⚽ הולנד-יפן</div>
             <div class="day-sub">בראנץ' · משחק בבית · ברודווי אופציונלי</div>
           </div>
           <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
@@ -3242,8 +3369,8 @@
         <div class="day-header" onclick="toggle(this)">
           <div class="day-num"><span class="n">16</span><span class="w">Tue</span></div>
           <div class="day-main">
-            <div class="day-title">צרפת × סנגל <span class="tag match">⚽ Match Day</span></div>
-            <div class="day-sub">15:00 · MetLife Stadium</div>
+            <div class="day-title">צרפת × סנגל <span class="tag match">⚽ Match Day</span> <span class="tag nba">🏀 NBA G6</span></div>
+            <div class="day-sub">15:00 · MetLife · ערב טריפל: ארגנטינה + ניקס!</div>
           </div>
           <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
@@ -3258,7 +3385,11 @@
           <div class="item"><div class="item-time">15:00</div><div class="item-body"><strong>שריקת הפתיחה 🏆</strong></div></div>
           <div class="item"><div class="item-time">17:00</div><div class="item-body">סיום ויציאה · המתנה לשאטל</div></div>
           <div class="item"><div class="item-time">18:00-20:00</div><div class="item-body"><strong>שאטל חזרה ל-Port Authority</strong><span class="note">⚠️ הנסיעה חזרה יכולה לקחת עד 3 שעות בגלל העומסים. סבלנות + סנאקים</span></div></div>
-          <div class="item"><div class="item-time">21:00</div><div class="item-body"><strong>🇦🇷 Argentina vs Algeria בדירה</strong><span class="note">21:00 ET ב-Kansas City. תזמון מושלם - תגיעו לדירה בדיוק לקראת הפתיחה. אשתו של טל ארגנטינאית - חובה! ארוחה קלה + בירה + צפייה משפחתית</span></div></div>
+          <div class="item"><div class="item-time">21:00</div><div class="item-body"><strong>🇦🇷 Argentina vs Algeria בדירה</strong><span class="note">21:00 ET ב-Kansas City. תזמון מושלם - תגיעו לדירה בדיוק לקראת הפתיחה. ארוחה קלה + בירה + צפייה משפחתית</span></div></div>
+          <div class="callout nba-callout">
+            <div class="callout-icon">🏀</div>
+            <div class="callout-text"><strong>NBA Finals - <span class="nba-game">Game 6*</span> במדיסון סקוור גארדן!</strong> · ב-20:30 ET · אם הסדרה מגיעה ל-Game 6, **ניקס מארחים במנהטן!** האווירה בעיר תהיה משוגעת. *רק אם נדרש משחק 6 - תלוי מי מנצח ב-G4-G5*</div>
+          </div>
         </div></div>
       </div>
 
@@ -3266,8 +3397,8 @@
         <div class="day-header" onclick="toggle(this)">
           <div class="day-num"><span class="n">17</span><span class="w">Wed</span></div>
           <div class="day-main">
-            <div class="day-title">פיי-דיי · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 אנגליה-קרואטיה · סיור עם טל</div>
-            <div class="day-sub">משחק, סיור אוכל, ערב רגוע ואריזה</div>
+            <div class="day-title">פיי-דיי · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 אנגליה-קרואטיה · צ'יינה טאון עם טל</div>
+            <div class="day-sub">משחק, צ'יינה טאון עם טל, ערב רגוע ואריזה</div>
           </div>
           <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
@@ -3277,8 +3408,8 @@
           <div class="item"><div class="item-time">13:30</div><div class="item-body"><strong>פיננשל דיסטריקט</strong> (קצר)<span class="note">Stone Street, Battery Park, Oculus / טבעת חורבן 9/11 - לתעדף, היום קצר</span></div></div>
           <div class="item"><div class="item-time">15:30</div><div class="item-body">עלייה לסוהו / Lower East Side<span class="note">למצוא בר לפני המשחק</span></div></div>
           <div class="item"><div class="item-time">16:00</div><div class="item-body"><strong>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England × Croatia בבר</strong><span class="note">רימאצ' של חצי הגמר 2018 שקרואטיה זכתה בו! אווירה מטורפת. בארים בסוהו/LES: The Mary Lane, Botanica, או Doc Holliday's. *מסתיים בערך 18:00*</span></div></div>
-          <div class="item"><div class="item-time">18:30</div><div class="item-body"><strong>🥟 סיור אוכל בצ'יינה טאון עם טל</strong><span class="note">סיור פרטי - להגיע רעבים. צ'יינה טאון 5 דק' מסוהו</span></div></div>
-          <div class="item"><div class="item-time">20:30</div><div class="item-body">סיום סיור · חזרה לדירה<span class="note">ערב רגוע בבית אחרי יום עמוס - אריזה לסופ"ש בג'רזי שור</span></div></div>
+          <div class="item"><div class="item-time">18:30</div><div class="item-body"><strong>🥟 סיור אוכל בצ'יינה טאון עם טל</strong><span class="note">להגיע רעבים. צ'יינה טאון 5 דק' מסוהו</span></div></div>
+          <div class="item"><div class="item-time">20:30</div><div class="item-body">חזרה לדירה<span class="note">ערב רגוע בבית אחרי יום עמוס - אריזה לסופ"ש בג'רזי שור</span></div></div>
         </div></div>
       </div>
 
@@ -3302,13 +3433,19 @@
         <div class="day-header" onclick="toggle(this)">
           <div class="day-num"><span class="n">19</span><span class="w">Fri</span></div>
           <div class="day-main">
-            <div class="day-title">סופ"ש בבית חוף של יעל ופיליפ <span class="tag beach">🏡</span></div>
-            <div class="day-sub">לאן שהיום יוביל</div>
+            <div class="day-title">ג'רזי שור → ניו יורק <span class="tag beach">🏡</span> <span class="tag nba">🏀 NBA G7</span></div>
+            <div class="day-sub">יום חוף, חזרה למנהטן בערב · אופציה: גמר NBA</div>
           </div>
           <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
         <div class="day-body"><div class="timeline">
-          <div class="item"><div class="item-time">כל היום</div><div class="item-body">ארוחות, חברים, שיטוטים באזור<span class="note">בערב או בבוקר אחרי - חזרה למנהטן</span></div></div>
+          <div class="item"><div class="item-time">בוקר</div><div class="item-body">חוף, ארוחות, חברים<span class="note">יום אחרון בבית של יעל ופיליפ</span></div></div>
+          <div class="item"><div class="item-time">14:00</div><div class="item-body">ארוחת צהריים מקומית<span class="note">להיפרד יפה מהבית</span></div></div>
+          <div class="item"><div class="item-time">19:00</div><div class="item-body"><strong>חזרה למנהטן</strong><span class="note">~2 שעות נסיעה · להגיע לדירה לפני הגמר אם נדרש</span></div></div>
+          <div class="callout nba-callout">
+            <div class="callout-icon">🏀</div>
+            <div class="callout-text"><strong>NBA Finals - <span class="nba-game">Game 7*</span> · המשחק המכריע!</strong> · ב-20:30 ET בOKC/San Antonio · אם הסדרה הולכת ל-7 משחקים — זה הלילה הגדול! ניקס יכולים לזכות ב-NBA אחרי 53 שנה. אפשרויות צפייה במנהטן: בר ספורט (אווירה משוגעת בעיר!), בדירה של אביב/טל, או בלובי של מלון Knickerbocker. *רק אם הסדרה הגיעה ל-Game 7*</div>
+          </div>
         </div></div>
       </div>
 
@@ -3768,14 +3905,16 @@
       ['19:30', 'ארוחת ערב מוקדמת בווסט וילג\''],
       ['21:00', '<strong>🇺🇸 USA × Paraguay בבר</strong>']
     ]},
-    13: { type: 'normal', title: 'ברוקלין · ⚽ ברזיל-מרוקו', sub: 'Smorgasburg, משחק בבר', label: '⚽ ברזיל', items: [
+    13: { type: 'normal', title: 'ברוקלין · ⚽ ברזיל-מרוקו', sub: 'Smorgasburg, משחק, שקיעה או NBA G5', label: '⚽ ברזיל', items: [
       ['11:30', '<strong>Smorgasburg</strong>'],
       ['14:30', 'וויליאמסבורג'],
       ['17:30', '<strong>⚽ Brazil vs Morocco בבר</strong>'],
-      ['20:30', 'ארוחת ערב'],
-      ['23:00', 'חזרה לדירה']
+      ['19:30', 'שני תרחישים תלוי NBA G5'],
+      ['🏀 G5', '<strong>חזרה למנהטן + Game 5</strong>'],
+      ['🌅 ללא', '<strong>Domino Park · שקיעה 20:29</strong>'],
+      ['21:30', 'ארוחת ערב באזור הדירה']
     ]},
-    14: { type: 'rest', title: 'יום משפחה · ⚽ הולנד-יפן', sub: 'סנטרל פארק, משחק, ברודווי אופציונלי', label: '⚽ הולנד', items: [
+    14: { type: 'rest', title: 'סנטרל פארק · ⚽ הולנד-יפן', sub: 'סנטרל פארק, משחק, ברודווי אופציונלי', label: '⚽ הולנד', items: [
       ['בוקר', '<strong>🎭 הזנת הגרלות ברודווי</strong>'],
       ['11:30', 'בראנץ\' ארוך'],
       ['13:30', '<strong>סנטרל פארק</strong>'],
@@ -3798,11 +3937,11 @@
       ['18:00-20:00', 'שאטל חזרה (עד 3 שעות)'],
       ['21:00', '<strong>🇦🇷 Argentina vs Algeria בדירה</strong>']
     ]},
-    17: { type: 'normal', title: 'פיי-דיי · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 ENG-CRO', sub: 'משחק, סיור עם טל, ערב רגוע', label: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 ENG-CRO', items: [
+    17: { type: 'normal', title: 'פיי-דיי · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 ENG-CRO · צ\'יינה טאון עם טל', sub: 'משחק, צ\'יינה טאון עם טל, ערב רגוע', label: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 ENG-CRO', items: [
       ['10:30', '<strong>בראנץ\' נינוח</strong>'],
       ['13:30', '<strong>פיננשל דיסטריקט</strong>'],
       ['16:00', '<strong>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England × Croatia בבר</strong>'],
-      ['18:30', '<strong>🥟 סיור אוכל עם טל</strong>'],
+      ['18:30', '<strong>🥟 צ\'יינה טאון עם טל</strong>'],
       ['20:30', 'חזרה לדירה · אריזה']
     ]},
     18: { type: 'beach', title: 'בית חוף בג\'רזי שור · יום 1', sub: 'אצל יעל ופיליפ', label: '🏡 ג\'רזי שור', items: [
@@ -3810,8 +3949,11 @@
       ['צהריים', 'הגעה והתמקמות'],
       ['ערב', '<strong>ארוחה משותפת</strong>']
     ]},
-    19: { type: 'beach', title: 'בית חוף בג\'רזי שור · יום 2', sub: 'בית, חוף, חברים', label: '🏡 ג\'רזי שור', items: [
-      ['כל היום', 'חוף, ארוחות, חברים']
+    19: { type: 'beach', title: 'ג\'רזי שור → ניו יורק', sub: 'יום חוף, חזרה לעיר בערב · אופציה NBA G7', label: '🏡 → 🗽', items: [
+      ['בוקר', 'חוף, ארוחות, חברים'],
+      ['14:00', 'ארוחת צהריים מקומית'],
+      ['19:00', '<strong>חזרה למנהטן</strong>'],
+      ['21:00', '🏀 אופציה: NBA Game 7 (אם נדרש)']
     ]},
     20: { type: 'normal', title: 'יום אחרון אמיתי', sub: 'לקום מוקדם · ארוחה גדולה לסיום', label: 'אחרון', items: [
       ['08:30', 'בוקר מוקדם'],
@@ -3848,13 +3990,14 @@
     { name: '🇺🇸 USA × Paraguay בבר', lat: 40.7321, lng: -74.0035, day: 12, time: '21:00', order: 6, type: 'match', desc: 'יום 12 · 21:00 · משחק הפתיחה של ארה"ב בבר ספורט בווסט וילג\'' },
     { ...homeBase, day: 12, time: '00:30', order: 7, desc: 'יום 12 · 00:30 · חזרה לדירה' },
 
-    // Day 13 - Brooklyn + Brazil vs Morocco match
+    // Day 13 - Brooklyn + Brazil vs Morocco match + scenario
     { ...homeBase, day: 13, time: '11:00', order: 1, desc: 'יום 13 · 11:00 · יוצאים לברוקלין' },
     { name: 'Smorgasburg', lat: 40.7211, lng: -73.9626, day: 13, time: '11:30', order: 2, type: 'food', desc: 'יום 13 · 11:30 · שוק אוכל' },
     { name: 'שיטוט בוויליאמסבורג', lat: 40.7180, lng: -73.9580, day: 13, time: '14:30', order: 3, type: 'wander', desc: 'יום 13 · 14:30 · וינטג\', בתי קפה, חנויות עצמאיות' },
     { name: '⚽ Brazil vs Morocco בבר', lat: 40.7148, lng: -73.9620, day: 13, time: '17:30', order: 4, type: 'match', desc: 'יום 13 · 17:30 · ברזיל-מרוקו ב-MetLife משודר בבר ויליאמסבורג' },
-    { name: 'Domino Park', lat: 40.7149, lng: -73.9679, day: 13, time: '20:30', order: 5, type: 'attr', desc: 'יום 13 · 20:30 · אחרי המשחק' },
-    { ...homeBase, day: 13, time: '23:30', order: 6, desc: 'יום 13 · 23:30 · חזרה לדירה' },
+    { name: '🌅 Domino Park · שקיעה', lat: 40.7149, lng: -73.9679, day: 13, time: '19:45', order: 5, type: 'attr', desc: 'יום 13 · 19:45 · אם אין NBA G5 - שקיעה 20:29 מעל מנהטן (תרחיש B)' },
+    { ...homeBase, day: 13, time: '20:30', order: 6, type: 'match', desc: 'יום 13 · 20:30 · אם יש NBA G5 - חזרה למנהטן + ארוחה + Game 5 (תרחיש A)' },
+    { ...homeBase, day: 13, time: '23:30', order: 7, desc: 'יום 13 · 23:30 · חזרה לדירה' },
 
     // Day 14 - Family / Netherlands vs Japan match / Broadway
     { ...homeBase, day: 14, time: '11:00', order: 1, desc: 'יום 14 · 11:00 · יוצאים' },
@@ -3885,12 +4028,34 @@
     { ...homeBase, day: 17, time: '12:30', order: 1, desc: 'יום 17 · 12:30 · חזרה מבראנץ\' למנוחה קצרה' },
     { name: 'פיננשל דיסטריקט', lat: 40.7074, lng: -74.0113, day: 17, time: '13:30', order: 2, type: 'attr', desc: 'יום 17 · 13:30 · Stone St, Battery Park' },
     { name: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 England × Croatia בבר', lat: 40.7195, lng: -73.9890, day: 17, time: '16:00', order: 3, type: 'match', desc: 'יום 17 · 16:00 · רימאצ\' של חצי גמר 2018! בבר בסוהו/LES' },
-    { name: 'סיור אוכל בצ\'יינה טאון עם טל', lat: 40.7158, lng: -73.9970, day: 17, time: '18:30', order: 4, type: 'food', desc: 'יום 17 · 18:30 · 🥟 סיור עם טל (סיום 20:30)' },
+    { name: 'צ\'יינה טאון עם טל', lat: 40.7158, lng: -73.9970, day: 17, time: '18:30', order: 4, type: 'food', desc: 'יום 17 · 18:30 · 🥟 צ\'יינה טאון עם טל' },
     { ...homeBase, day: 17, time: '21:00', order: 5, desc: 'יום 17 · 21:00 · חזרה לדירה + אריזה' },
 
+    // Day 18 - Jersey Shore arrival
+    { ...homeBase, day: 18, time: '10:00', order: 1, type: 'travel', desc: 'יום 18 · 10:00 · יציאה למנהטן ל-Jersey Shore' },
+    { name: 'Jersey Shore · בית יעל ופיליפ', lat: 40.2206, lng: -74.0121, day: 18, time: '12:30', order: 2, type: 'beach', desc: 'יום 18 · 12:30 · הגעה לבית החוף, התמקמות' },
+    { name: 'חוף Jersey Shore', lat: 40.2241, lng: -74.0050, day: 18, time: '15:00', order: 3, type: 'beach', desc: 'יום 18 · 15:00 · חוף, צ\'יל' },
+    { name: 'ארוחת ערב באזור', lat: 40.2220, lng: -74.0110, day: 18, time: '19:30', order: 4, type: 'food', desc: 'יום 18 · 19:30 · ארוחה ביתית או מסעדה מקומית' },
+
+    // Day 19 - Jersey Shore day, then BACK TO NYC in evening
+    { name: 'Jersey Shore · בית יעל ופיליפ', lat: 40.2206, lng: -74.0121, day: 19, time: '10:00', order: 1, type: 'beach', desc: 'יום 19 · 10:00 · בוקר רגוע בבית החוף' },
+    { name: 'חוף + פעילויות', lat: 40.2241, lng: -74.0050, day: 19, time: '12:00', order: 2, type: 'beach', desc: 'יום 19 · 12:00 · יום חוף עם חברים' },
+    { name: 'ארוחת צהריים באזור', lat: 40.2220, lng: -74.0110, day: 19, time: '14:00', order: 3, type: 'food', desc: 'יום 19 · 14:00 · ארוחת צהריים מקומית' },
+    { ...homeBase, day: 19, time: '19:00', order: 4, type: 'travel', desc: 'יום 19 · 19:00 · חזרה למנהטן · אופציה: גמר NBA G7 בבר' },
+
+    // Day 20 - Last full day in NYC
+    { ...homeBase, day: 20, time: '08:30', order: 1, desc: 'יום 20 · 08:30 · בוקר מוקדם' },
+    { name: 'פעילות בוקר אחרונה', lat: 40.7589, lng: -73.9851, day: 20, time: '09:30', order: 2, type: 'attr', desc: 'יום 20 · 09:30 · ניצול היום האחרון' },
+    { name: 'ארוחת צהריים', lat: 40.7484, lng: -73.9857, day: 20, time: '12:30', order: 3, type: 'food', desc: 'יום 20 · 12:30 · אוכל אגדי' },
+    { name: 'דבר נוסף שלא הספקנו', lat: 40.7505, lng: -73.9934, day: 20, time: '14:00', order: 4, type: 'wander', desc: 'יום 20 · 14:00 · אחרון לעשות' },
+    { name: 'ארוחת ערב מיוחדת', lat: 40.7336, lng: -74.0027, day: 20, time: '19:30', order: 5, type: 'food', desc: 'יום 20 · 19:30 · ארוחה גדולה לסיום הטיול' },
+    { name: 'קוקטייל לסיום', lat: 40.7349, lng: -74.0007, day: 20, time: '22:30', order: 6, type: 'food', desc: 'יום 20 · 22:30 · משקה אחרון' },
+    { ...homeBase, day: 20, time: '00:30', order: 7, desc: 'יום 20 · 00:30 · חזרה לדירה' },
+
     // Day 21 - Departure
-    { ...homeBase, day: 21, time: '16:30', order: 1, desc: 'יום 21 · 16:30 · יציאה לשדה' },
-    { name: 'JFK Airport', lat: 40.6413, lng: -73.7781, day: 21, time: '18:00', order: 2, type: 'travel', desc: 'יום 21 · 18:00 · ✈ טיסה 21:00' }
+    { ...homeBase, day: 21, time: '12:00', order: 1, type: 'food', desc: 'יום 21 · 12:00 · בראנץ\' עם האחים' },
+    { ...homeBase, day: 21, time: '16:30', order: 2, desc: 'יום 21 · 16:30 · יציאה לשדה' },
+    { name: 'JFK Airport', lat: 40.6413, lng: -73.7781, day: 21, time: '18:00', order: 3, type: 'travel', desc: 'יום 21 · 18:00 · ✈ טיסה 21:00' }
   ];
 
   // ============ LIST VIEW LOGIC ============
