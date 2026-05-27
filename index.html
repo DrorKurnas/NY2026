@@ -1949,6 +1949,7 @@
     transition: all 0.2s ease;
     border: 1px solid transparent;
     min-height: 70px;
+    min-width: 0;
   }
 
   .cal-cell.empty { background: transparent; }
@@ -2754,23 +2755,38 @@
     .item-body .note { font-size: 11px; }
     .day-icon { font-size: 24px; }
 
-    /* Calendar */
-    .calendar { padding: 12px; border-radius: 14px; }
+    /* Calendar - force fit on mobile */
+    .calendar {
+      padding: 10px !important;
+      border-radius: 14px;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
     .cal-header { margin-bottom: 12px; padding-bottom: 10px; }
     .cal-month { font-size: 20px; }
     .cal-year { font-size: 12px; }
-    .cal-weekdays { gap: 3px; margin-bottom: 4px; }
-    .cal-wd { font-size: 9px; padding: 4px 0; letter-spacing: 0.04em; }
-    .cal-grid { gap: 3px; }
+    .cal-weekdays { gap: 2px !important; margin-bottom: 4px; }
+    .cal-wd { font-size: 9px; padding: 4px 0; letter-spacing: 0.04em; min-width: 0; overflow: hidden; }
+    .cal-grid { gap: 2px !important; }
     .cal-cell {
-      padding: 4px 2px;
+      padding: 3px 1px !important;
       min-height: 0 !important;
+      min-width: 0 !important;
       aspect-ratio: 1 !important;
       font-size: 10px;
       border-radius: 8px;
+      overflow: hidden;
     }
     .cal-day-num { font-size: 12px; font-weight: 700; }
-    .cal-event-label { font-size: 8px; line-height: 1.1; }
+    .cal-event-label {
+      font-size: 8px;
+      line-height: 1.1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
     .cal-tag { font-size: 8px; padding: 1px 3px; }
     .cal-cell.empty { display: block; }
 
