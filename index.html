@@ -2434,6 +2434,31 @@
     margin-bottom: 8px;
     font-style: italic;
   }
+  .check-group-note.weather-live {
+    background: linear-gradient(135deg, #e8f4ff 0%, #d4e8ff 100%);
+    border-right: 3px solid var(--accent);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-style: normal;
+    color: var(--ink);
+  }
+  .check-group-note.weather-live strong { color: var(--accent); }
+
+  /* Dynamic weather tags inline in checklist items */
+  .wx-tag {
+    display: none;
+    margin-right: 6px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+  }
+  .wx-tag.active { display: inline-block; }
+  .wx-tag.hot { background: #ffe8c4; color: #b8651a; }
+  .wx-tag.cool { background: #d4e6f5; color: #0f4c8a; }
+  .wx-tag.rain { background: #d4e6f5; color: #0f4c8a; }
 
   .check-list label {
     display: flex;
@@ -3661,26 +3686,36 @@
       <div class="check-group">
         <div class="check-group-head">
           <div class="check-group-icon">🧳</div>
-          <h3>אריזה</h3>
+          <h3>אריזה · מותאם לתחזית</h3>
         </div>
-        <p class="check-group-note">חישוב לטיול של 11 ימים עם כביסה אחת באמצע אצל אביב/טל</p>
+        <p class="check-group-note" id="weather-tip">🌡️ <strong>טוען תחזית עדכנית...</strong></p>
         <ul class="check-list">
-          <li class="check-subhead">בגדים</li>
-          <li><label><input type="checkbox" data-check="tshirts"><span class="check-mark"></span><span class="check-text"><strong>חולצות טי</strong> — 7 (יום-יום)</span></label></li>
-          <li><label><input type="checkbox" data-check="shirts"><span class="check-mark"></span><span class="check-text"><strong>חולצות מכופתרות / פולו</strong> — 2 (לארוחות הערב והצגה)</span></label></li>
-          <li><label><input type="checkbox" data-check="pants"><span class="check-mark"></span><span class="check-text"><strong>מכנסיים ארוכים</strong> — 2 (אחד ספורטיבי, אחד שיק יותר)</span></label></li>
-          <li><label><input type="checkbox" data-check="shorts"><span class="check-mark"></span><span class="check-text"><strong>מכנסיים קצרים</strong> — 2-3</span></label></li>
-          <li><label><input type="checkbox" data-check="underwear"><span class="check-mark"></span><span class="check-text"><strong>תחתונים</strong> — 8-9</span></label></li>
-          <li><label><input type="checkbox" data-check="socks"><span class="check-mark"></span><span class="check-text"><strong>גרביים</strong> — 8 זוגות (הליכה הרבה)</span></label></li>
-          <li><label><input type="checkbox" data-check="pajamas"><span class="check-mark"></span><span class="check-text"><strong>פיג'מה / בגדי שינה</strong> — 1-2</span></label></li>
-          <li><label><input type="checkbox" data-check="hoodie"><span class="check-mark"></span><span class="check-text"><strong>חולצה ארוכה / קפוצ'ון</strong> — 1 (ערבים קרירים, מזגנים)</span></label></li>
-          <li><label><input type="checkbox" data-check="raincoat"><span class="check-mark"></span><span class="check-text"><strong>מעיל גשם דק / שכמייה</strong> — 1 (יוני = גשם פתאומי אפשרי)</span></label></li>
-          <li><label><input type="checkbox" data-check="swim"><span class="check-mark"></span><span class="check-text"><strong>בגד ים</strong> — 1-2 (לבית חוף של יעל ופיליפ)</span></label></li>
+          <li class="check-subhead">בגדים · קל ונושם</li>
+          <li><label><input type="checkbox" data-check="tshirts"><span class="check-mark"></span><span class="check-text"><strong>חולצות טי קלות ונושמות</strong> — 8-9 (יהיה חם, אולי תזיע. עדיף כותנה/ספורט מהירה ייבוש)</span></label></li>
+          <li><label><input type="checkbox" data-check="tank-tops"><span class="check-mark"></span><span class="check-text"><strong>גופיות / חולצות שרוול קצר נוסף</strong> — 2-3 (לימים הכי חמים, 11-14) <span class="wx-tag" data-wx="hot"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="shirts"><span class="check-mark"></span><span class="check-text"><strong>חולצה מכופתרת / פולו</strong> — 1-2 (לפיטר לוגר ולארוחה אצל ההורים של רומי)</span></label></li>
+          <li><label><input type="checkbox" data-check="shorts"><span class="check-mark"></span><span class="check-text"><strong>מכנסיים קצרים</strong> — 4 (יהיה חם, תרצה הרבה. כביסה באמצע) <span class="wx-tag" data-wx="hot"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="pants"><span class="check-mark"></span><span class="check-text"><strong>מכנסיים ארוכים קלים</strong> — 2 (לערבים, ולפיטר לוגר. עדיף קליל - לא ג'ינס עבה)</span></label></li>
+          <li><label><input type="checkbox" data-check="underwear"><span class="check-mark"></span><span class="check-text"><strong>תחתונים</strong> — 10 (בגלל החום, אולי תחליף יותר מפעם ביום)</span></label></li>
+          <li><label><input type="checkbox" data-check="socks"><span class="check-mark"></span><span class="check-text"><strong>גרביים</strong> — 8 זוגות (הליכה הרבה, גרבי כותנה דקות)</span></label></li>
+          <li><label><input type="checkbox" data-check="pajamas"><span class="check-mark"></span><span class="check-text"><strong>פיג'מה קלה</strong> — 1-2</span></label></li>
+          <li><label><input type="checkbox" data-check="hoodie"><span class="check-mark"></span><span class="check-text"><strong>חולצה ארוכה / קפוצ'ון דק</strong> — 1 (לערבים ולמזגנים בפנים) <span class="wx-tag" data-wx="cool"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="raincoat"><span class="check-mark"></span><span class="check-text"><strong>מעיל גשם דק / שכמייה</strong> — 1 (יוני בניו יורק = גשם פתאומי אפשרי. לא לוותר!) <span class="wx-tag" data-wx="rain"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="swim"><span class="check-mark"></span><span class="check-text"><strong>בגד ים</strong> — 2 (לבית חוף של יעל ופיליפ + יום החוף הנוסף)</span></label></li>
+          <li><label><input type="checkbox" data-check="beach-towel"><span class="check-mark"></span><span class="check-text"><strong>מגבת חוף קומפקטית</strong> — 1 (לג'רזי שור. ייתכן שיש בבית, לבדוק עם יעל)</span></label></li>
 
-          <li class="check-subhead">נעליים</li>
-          <li><label><input type="checkbox" data-check="walking-shoes"><span class="check-mark"></span><span class="check-text"><strong>נעלי הליכה נוחות</strong> — 1 זוג (העיקריות)</span></label></li>
-          <li><label><input type="checkbox" data-check="casual-shoes"><span class="check-mark"></span><span class="check-text"><strong>נעליים יום-יום / סניקרס נקיות</strong> — 1 זוג (למקרה שהראשונות נרטבות או מסריחות)</span></label></li>
-          <li><label><input type="checkbox" data-check="sandals"><span class="check-mark"></span><span class="check-text"><strong>כפכפים / סנדלים</strong> — 1 זוג (לבית חוף של יעל ופיליפ)</span></label></li>
+          <li class="check-subhead">נעליים · עם דגש על חום</li>
+          <li><label><input type="checkbox" data-check="walking-shoes"><span class="check-mark"></span><span class="check-text"><strong>נעלי הליכה נושמות</strong> — 1 זוג (העיקריות, לא נעלי חורף!)</span></label></li>
+          <li><label><input type="checkbox" data-check="casual-shoes"><span class="check-mark"></span><span class="check-text"><strong>סניקרס קלות נוספות</strong> — 1 זוג (להחליף ביום, או אם הראשונות נרטבות)</span></label></li>
+          <li><label><input type="checkbox" data-check="sandals"><span class="check-mark"></span><span class="check-text"><strong>סנדלים / כפכפים</strong> — 1 זוג (בית חוף, ולערבים חמים בעיר)</span></label></li>
+
+          <li class="check-subhead">אביזרים · נגד שמש וחום</li>
+          <li><label><input type="checkbox" data-check="sunglasses"><span class="check-mark"></span><span class="check-text"><strong>משקפי שמש</strong> — חובה! שמש חזקה ביוני</span></label></li>
+          <li><label><input type="checkbox" data-check="sunscreen"><span class="check-mark"></span><span class="check-text"><strong>קרם הגנה SPF 30+</strong> — חובה ליום המשחק (4 שעות בשמש) וליום חוף <span class="wx-tag" data-wx="hot"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="cap"><span class="check-mark"></span><span class="check-text"><strong>כובע</strong> — חובה ליום המשחק! 4 שעות בשמש ב-MetLife <span class="wx-tag" data-wx="hot"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="water-bottle"><span class="check-mark"></span><span class="check-text"><strong>בקבוק מים מתקפל / נירוסטה</strong> — 1 (להיות עם מים כל היום, מילוי חינם בכל מקום)</span></label></li>
+          <li><label><input type="checkbox" data-check="umbrella"><span class="check-mark"></span><span class="check-text"><strong>מטרייה קומפקטית</strong> — 1 (קלילה לתיק) <span class="wx-tag" data-wx="rain"></span></span></label></li>
+          <li><label><input type="checkbox" data-check="reusable-bag"><span class="check-mark"></span><span class="check-text">תיק מתקפל (לקניות / טיולים)</span></label></li>
 
           <li class="check-subhead">אלקטרוניקה</li>
           <li><label><input type="checkbox" data-check="phone-charger"><span class="check-mark"></span><span class="check-text"><strong>מטען טלפון + כבל</strong></span></label></li>
@@ -3689,14 +3724,10 @@
           <li><label><input type="checkbox" data-check="headphones"><span class="check-mark"></span><span class="check-text">אוזניות + מטען</span></label></li>
 
           <li class="check-subhead">אישי</li>
-          <li><label><input type="checkbox" data-check="sunglasses"><span class="check-mark"></span><span class="check-text">משקפי שמש</span></label></li>
-          <li><label><input type="checkbox" data-check="sunscreen"><span class="check-mark"></span><span class="check-text">קרם הגנה</span></label></li>
-          <li><label><input type="checkbox" data-check="cap"><span class="check-mark"></span><span class="check-text">כובע</span></label></li>
-          <li><label><input type="checkbox" data-check="umbrella"><span class="check-mark"></span><span class="check-text">מטרייה קומפקטית</span></label></li>
-          <li><label><input type="checkbox" data-check="toiletries"><span class="check-mark"></span><span class="check-text">תיק טואלטיקה (משחת שיניים, מברשת, דאודורנט, סבון)</span></label></li>
+          <li><label><input type="checkbox" data-check="toiletries"><span class="check-mark"></span><span class="check-text">תיק טואלטיקה (משחת שיניים, מברשת, דאודורנט - חזק לחום, סבון)</span></label></li>
           <li><label><input type="checkbox" data-check="meds-personal"><span class="check-mark"></span><span class="check-text">תרופות אישיות קבועות</span></label></li>
-          <li><label><input type="checkbox" data-check="meds-emergency"><span class="check-mark"></span><span class="check-text">תרופות חירום: אקמול, נורופן, אימודיום, פלסטרים</span></label></li>
-          <li><label><input type="checkbox" data-check="reusable-bag"><span class="check-mark"></span><span class="check-text">תיק מתקפל (לקניות / טיולים)</span></label></li>
+          <li><label><input type="checkbox" data-check="meds-emergency"><span class="check-mark"></span><span class="check-text">תרופות חירום: אקמול, נורופן, אימודיום, פלסטרים, ג'ל אחרי-שמש (אלוורה)</span></label></li>
+          <li><label><input type="checkbox" data-check="wet-wipes"><span class="check-mark"></span><span class="check-text">מגבונים לחים / ממחטות - לחום ולזיעה</span></label></li>
         </ul>
       </div>
 
@@ -3730,10 +3761,11 @@
       </div>
       <div class="weather-strip" id="weather-strip"></div>
       <div class="weather-tips">
-        <span>👕 חולצה / שכבה קלה</span>
+        <span>👕 חולצות קלות ונושמות</span>
+        <span>🧢 כובע + 🕶 משקפי שמש</span>
+        <span>🧴 קרם הגנה SPF 30+</span>
+        <span>💧 בקבוק מים</span>
         <span>☂️ מטרייה קומפקטית</span>
-        <span>🕶 משקפי שמש</span>
-        <span>🧴 קרם הגנה</span>
       </div>
     </div>
   </section>
@@ -5424,6 +5456,85 @@
       } else {
         note.textContent = 'תחזית מבוססת ממוצעים היסטוריים ליוני · API לא זמין כרגע';
       }
+    }
+
+    // Update checklist dynamically based on forecast
+    updateChecklistFromWeather(forecast, isLive);
+  }
+
+  function updateChecklistFromWeather(forecast, isLive) {
+    if (!forecast || forecast.length === 0) return;
+
+    // Analyze the forecast
+    const maxTemp = Math.max(...forecast.map(d => d.high));
+    const minTemp = Math.min(...forecast.map(d => d.low));
+    const rainDays = forecast.filter(d => d.rain >= 40);
+    const hotDays = forecast.filter(d => d.high >= 28);
+    const coolDays = forecast.filter(d => d.high < 24);
+    const avgHigh = Math.round(forecast.reduce((s,d) => s+d.high, 0) / forecast.length);
+    const avgLow = Math.round(forecast.reduce((s,d) => s+d.low, 0) / forecast.length);
+
+    // Build summary text
+    const tipEl = document.getElementById('weather-tip');
+    if (tipEl) {
+      let parts = [];
+      const liveTag = isLive ? '🔴 תחזית חיה · ' : '';
+      parts.push(`<strong>${liveTag}טמפ' ${minTemp}°-${maxTemp}°C</strong>`);
+      parts.push(`ממוצע יום: ${avgHigh}° / לילה: ${avgLow}°`);
+
+      if (hotDays.length >= 5) {
+        parts.push(`☀️ <strong>${hotDays.length} ימים חמים מאוד (28°+)</strong> - הרבה בגדים קלים`);
+      } else if (hotDays.length > 0) {
+        parts.push(`☀️ ${hotDays.length} ימים חמים (28°+)`);
+      }
+
+      if (coolDays.length > 0) {
+        const dayNums = coolDays.map(d => d.day).join(', ');
+        parts.push(`🧥 ימים קרירים יותר: ${dayNums}`);
+      }
+
+      if (rainDays.length > 0) {
+        const dayNums = rainDays.map(d => `${d.day} (${d.rain}%)`).join(', ');
+        parts.push(`🌧️ <strong>סיכוי גשם:</strong> ימים ${dayNums}`);
+      } else {
+        parts.push(`☀️ סיכוי גשם נמוך לרוב הימים`);
+      }
+
+      tipEl.innerHTML = '🌡️ ' + parts.join(' · ');
+      tipEl.classList.add('weather-live');
+    }
+
+    // Activate/deactivate weather tags inline
+    const hotTags = document.querySelectorAll('.wx-tag[data-wx="hot"]');
+    const coolTags = document.querySelectorAll('.wx-tag[data-wx="cool"]');
+    const rainTags = document.querySelectorAll('.wx-tag[data-wx="rain"]');
+
+    if (hotDays.length >= 3) {
+      hotTags.forEach(t => {
+        t.textContent = `☀️ ${hotDays.length} ימים חמים`;
+        t.classList.add('active', 'hot');
+      });
+    }
+
+    if (coolDays.length >= 2) {
+      coolTags.forEach(t => {
+        t.textContent = `🧥 ימים ${coolDays.map(d => d.day).join(',')}`;
+        t.classList.add('active', 'cool');
+      });
+    }
+
+    if (rainDays.length >= 1) {
+      rainTags.forEach(t => {
+        t.textContent = `🌧️ ימים ${rainDays.map(d => d.day).join(',')}`;
+        t.classList.add('active', 'rain');
+      });
+    } else {
+      rainTags.forEach(t => {
+        t.textContent = `☀️ סיכוי גשם נמוך`;
+        t.classList.add('active');
+        t.style.background = '#d4f0e3';
+        t.style.color = '#007d40';
+      });
     }
   }
 
